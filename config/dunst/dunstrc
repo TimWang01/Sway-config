@@ -1,0 +1,75 @@
+[global]
+    # Display
+    monitor = 0
+    follow = mouse
+    geometry = "300x60-20+48"
+    shrink = no
+    indicate_hidden = yes
+    alignment = left
+    vertical_alignment = center
+    sticky_history = yes
+    separator_height = 2
+    padding = 12
+    horizontal_padding = 12
+    text_icon_padding = 8
+    frame_width = 0
+    corner_radius = 8
+    gap_size = 4
+
+    # Text
+    font = Century Gothic 10
+    line_height = 4
+    markup = full
+    format = "<b>%s</b>\n%b"
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = yes
+    hide_duplicate_count = no
+    show_indicators = no
+
+    # Icons
+    icon_position = left
+    min_icon_size = 24
+    max_icon_size = 48
+    icon_theme = breeze-dark
+    icon_path = /usr/share/icons/breeze-dark/16/:/usr/share/icons/breeze-dark/22/:/usr/share/icons/breeze-dark/32/
+
+    # History
+    history_length = 20
+
+    # Misc
+    dmenu = /usr/bin/rofi -dmenu -p dunst
+    browser = /usr/bin/firefox
+    word_wrap = yes
+    ignore_dbusclose = no
+    force_xwayland = no
+    force_xinerama = no
+    mouse_left = close_current
+    mouse_middle = close_all
+    mouse_right = context
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+period
+
+[urgency_low]
+    background = "#2e3440"
+    foreground = "#d8dee9"
+    timeout = 4
+    highlight = "#81a1c1"
+
+[urgency_normal]
+    background = "#2e3440"
+    foreground = "#d8dee9"
+    timeout = 5
+    highlight = "#a3be8c"
+
+[urgency_critical]
+    background = "#2e3440"
+    foreground = "#d8dee9"
+    timeout = 0
+    highlight = "#bf616a"
+    frame_color = "#bf616a"
+    icon = /usr/share/icons/Adwaita/32x32/status/dialog-warning-symbolic.symbolic.png

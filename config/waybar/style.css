@@ -1,0 +1,380 @@
+/* ===== Palette (GTK @define-color variables) =====
+ * Colors are defined once here; change a value to re-theme everywhere.
+ * (GTK3 does not support CSS `var(--x)`; @define-color is the native mechanism.)
+ */
+
+/* Neutrals */
+@define-color fg             #d8dee9;  /* nord4 */
+@define-color bg             #2e3440;  /* nord0 */
+@define-color hover-bg       rgba(46, 52, 64, 0.3);
+@define-color border         rgba(76, 86, 106, 0.0);  /* nord3 */
+@define-color termite-bg     #3b4252;  /* nord1 */
+
+/* Waybar background gradient (opaque top -> transparent bottom) */
+@define-color gradient-top   rgba(0, 0, 0, 0.95);
+@define-color gradient-mid   rgba(0, 0, 0, 0.5);
+@define-color gradient-bottom rgba(0, 0, 0, 0);
+
+/* Status colors */
+@define-color active-bg      #4c566a;  /* nord3 */
+@define-color urgent         #bf616a;  /* nord11 */
+@define-color critical       #bf616a;  /* nord11 */
+@define-color charging       #a3be8c;  /* nord14 */
+@define-color disk           #d08770;  /* nord12 */
+@define-color backlight      #8fbcbb;  /* nord7 */
+@define-color temperature    #d08770;  /* nord12 */
+@define-color vlc            #ebcb8b;  /* nord13 */
+
+/* Media / MPD */
+@define-color media-bg       #a3be8c;  /* nord14 */
+@define-color media-fg       #2e3440;  /* nord0 */
+@define-color mpd-paused     #8fbcbb;  /* nord7 */
+
+/* Input modules */
+@define-color language-bg    #8fbcbb;  /* nord7 */
+@define-color language-fg    #b48ead;  /* nord15 */
+@define-color keyboard-bg    #a3be8c;  /* nord14 */
+
+/* Misc */
+@define-color wireplumber-bg #e5e9f0;  /* nord5 */
+@define-color privacy-bg     #a3be8c;  /* nord14 */
+@define-color privacy-fg     #2e3440;  /* nord0 */
+
+* {
+    font-family: 'Century Gothic', monospace;
+/*    font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace; */
+    font-size: 13px;
+    font-weight: bold;
+}
+
+window#waybar {
+    background-color: transparent;
+    background-image: linear-gradient(
+        to bottom,
+        @gradient-top 0%,
+	@gradient-mid 60%,
+        @gradient-bottom 100%
+    );
+    border-bottom: 0px solid @border;
+    color: @fg;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+window#waybar.termite {
+    background-color: @termite-bg;
+}
+
+window#waybar.chromium {
+    background-color: @bg;
+    border: none;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    box-shadow: inset 0 -3px @fg;
+}
+
+/* you can set a style on hover for any module like this */
+#pulseaudio:hover {
+/*    background-color: #a37800; */
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: @fg;
+}
+
+#workspaces button:hover {
+    background: @hover-bg;
+}
+
+#workspaces button.focused, #workspaces button.active,
+#mode {
+    background-color: @active-bg;
+    box-shadow: inset 0 -3px @fg;
+}
+
+#workspaces button.urgent {
+    background-color: @urgent;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#custom-dnd,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#mpd {
+    color: @fg;
+}
+
+#tray, #battery, #cpu, #memory, #disk, #temperature, #backlight,
+#network, #pulseaudio, #wireplumber, #custom-media, #custom-dnd,
+#mode, #idle_inhibitor, #scratchpad, #power-profiles-daemon, #mpd {
+    padding: 0;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#clock {
+      padding: 0 8px;
+/*    background-color: #64727D; */
+}
+
+#battery {
+    background-color: @fg;
+    color: @bg;
+}
+
+#battery.charging, #battery.plugged {
+    color: @fg;
+    background-color: @charging;
+}
+
+@keyframes blink {
+    to {
+        background-color: @fg;
+        color: @bg;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: @critical;
+    color: @fg;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#power-profiles-daemon.balanced {
+    opacity: 0.25;
+    color: @bg;
+}
+
+#power-profiles-daemon:hover {
+    opacity: 1.0;
+    color: @fg;
+}
+
+label:focus {
+    background-color: @bg;
+}
+
+#cpu {
+    background-color: transparent;
+/*    color: #000000; */
+}
+
+#memory {
+    background-color: transparent;
+}
+
+#disk {
+    background-color: @disk;
+}
+
+#backlight {
+    background-color: @backlight;
+}
+
+
+#network {
+    min-width: 0;
+}
+
+#network.disconnected,
+#network.limited{
+/*   background-color: #f53c3c; */
+}
+
+
+#network:not(.disconnected):not(.limited) {
+    margin: 0;
+    padding: 0;
+}
+
+
+#pulseaudio {
+/*    background-color: #f1c40f; */
+    color: @fg;
+}
+
+#pulseaudio.muted {
+/*    background-color: #90b1b1;
+    color: #2a5c45; */
+}
+
+#wireplumber {
+    background-color: @wireplumber-bg;
+    color: @bg;
+}
+
+#wireplumber.muted {
+    background-color: @critical;
+}
+
+#custom-media,
+#mpd {
+    background-color: @media-bg;
+    color: @media-fg;
+}
+
+#custom-media {
+    min-width: 100px;
+}
+
+#custom-media.custom-vlc {
+    background-color: @vlc;
+}
+
+#temperature {
+    background-color: @temperature;
+}
+
+#temperature.critical {
+    background-color: @urgent;
+}
+
+#tray {
+/*    background-color: #2980b9; */
+}
+#tray > widget {
+    opacity: 0;
+}
+#tray:hover > widget {
+    opacity: 1;
+}
+
+#tray > widget > image {
+    padding: 0 2px;
+    min-width: 16px;
+    min-height: 16px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @urgent;
+}
+
+#idle_inhibitor {
+    opacity: 0.25;
+    color: @bg;
+}
+
+#idle_inhibitor.activated,
+#idle_inhibitor:hover {
+    opacity: 1.0;
+    color: @fg;
+}
+
+#mpd {
+    background-color: @media-bg;
+    color: @media-fg;
+}
+
+#mpd.disconnected {
+    background-color: @critical;
+}
+
+#mpd.stopped {
+    background-color: @backlight;
+}
+
+#mpd.paused {
+    background-color: @mpd-paused;
+}
+
+#language {
+    background: @language-bg;
+    color: @language-fg;
+    padding: 0 5px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state {
+    background: @keyboard-bg;
+    color: @bg;
+    padding: 0;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: @hover-bg;
+}
+
+#scratchpad {
+    background: @hover-bg;
+}
+
+#scratchpad.empty {
+	background-color: transparent;
+}
+
+#privacy {
+    padding: 0 5px;
+    background-color: @privacy-bg;
+    color: @privacy-fg;
+}
+
+#privacy-item {
+    padding: 0;
+}
