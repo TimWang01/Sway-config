@@ -24,13 +24,27 @@ config/
 install-swayosd.sh      bootstrap script for the swayosd COPR + package
 ```
 
+## Design principles
+
+- **No news is good news**: the desktop is quiet by default. Routine and
+  expected events produce no output — no notifications, no icons, no banner
+  changes — unless something actually needs attention. Indicators only appear
+  when a state is worth knowing about (e.g. DND on), and disappear when it
+  isn't. If nothing is shown, nothing is wrong.
+- **Don't change the source code**: don't patch or rebuild Sway or any of its
+  components (waybar, foot, swaylock, dunst, ...) to get different behavior —
+  no source edits, no custom builds, no recompiles. Component behavior is
+  shaped only through their documented configuration. If a feature isn't
+  reachable via config (e.g. Waybar's hardcoded calendar header), it's
+  accepted as-is rather than hacked into the upstream code.
+
 ## Design notes
 
 - **Bar**: Waybar, top, `mode hide`, gradient black background, Nord palette
   via `@define-color`, bold text, Century Gothic font.
 - **Terminal**: foot, Nord background, tabbed workspace layout
-  (`workspace_layout tabbed`), title bars hidden on lone windows
-  (`default_border none` + `hide_edge_borders --i3 none`), centered tab titles
+  (`workspace_layout tabbed`), thin pixel borders hidden on lone windows
+  (`default_border pixel 4` + `smart_borders on`), centered tab titles
   (`title_align center`).
 - **Idle / lock**: swayidle cascade — lock at 5 min, suspend at 15 min (only
   if still locked). Lock disables DPMS via a temporary swayidle so the display
