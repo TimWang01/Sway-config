@@ -271,7 +271,7 @@ seat * hide_cursor 5000
 # Thin window frame; smart_borders hides it when a window is alone on a workspace
 default_border pixel 4
 default_floating_border none
-font pango:Century Gothic 10
+font pango:Century Gothic Bold 10
 titlebar_padding 5 4
 titlebar_border_thickness 1
 # Center the title text in the title bar / tabs
