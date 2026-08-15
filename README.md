@@ -5,8 +5,9 @@ Versioned backup and management repo for the Sway desktop setup on
 AMD RX 6600 (RDNA2), 2560x1440@144 Hz on DP-2.
 
 This repo holds the hand-edited config files and helper scripts. The live
-locations live under `~/.config/` and are kept in sync manually; this repo is
-the source of truth for restoring or replicating the setup.
+locations under `~/.config/{sway,waybar,foot,swaylock,dunst}` are **symlinks
+into this repo** (`config/...`), so editing a live config edits the repo file
+directly. Commit after any change.
 
 ## Layout
 
@@ -63,27 +64,25 @@ in the Sway config can work.
 1. Install Fedora Sway Atomic (Sericea), then `rpm-ostree install` the layered
    packages you rely on (foot, waybar, swaylock, dunst, swayosd, etc.).
 2. `bash install-swayosd.sh` (after `rpm-ostree` reboot).
-3. Copy `config/` into `~/.config/` (preserving the `config/sway/scripts`
-   permissions — scripts are `chmod +x`).
+3. Symlink the config dirs into `~/.config/` so live configs stay inside the
+   repo:
+   ```sh
+   ln -s /home/b.n/Documents/Documents/Backup/System/Sway/config/sway    ~/.config/sway
+   ln -s /home/b.n/Documents/Documents/Backup/System/Sway/config/waybar  ~/.config/waybar
+   ln -s /home/b.n/Documents/Documents/Backup/System/Sway/config/foot    ~/.config/foot
+   ln -s /home/b.n/Documents/Documents/Backup/System/Sway/config/swaylock ~/.config/swaylock
+   ln -s /home/b.n/Documents/Documents/Backup/System/Sway/config/dunst   ~/.config/dunst
+   ```
 4. `chmod +x ~/.config/sway/scripts/*.sh`
 5. Re-login (or `swaymsg reload`) — Sway loads `~/.config/sway/config` and its
    `config.d/` fragments.
 
-## Keeping the backup in sync
+## Committing changes
 
-After editing anything under `~/.config/{sway,waybar,foot,swaylock,dunst}`
-(and the scripts), mirror the changes here:
-
-```sh
-rsync -a --delete ~/.config/sway/   config/sway/
-rsync -a --delete ~/.config/waybar/ config/waybar/
-rsync -a --delete ~/.config/foot/   config/foot/
-rsync -a --delete ~/.config/swaylock/ config/swaylock/
-rsync -a --delete ~/.config/dunst/  config/dunst/
-```
-
-Then commit:
+Because `~/.config/{sway,waybar,foot,swaylock,dunst}` are symlinks into this
+repo, there is **no sync step** — editing a live config edits the repo file.
+After a config change, just commit:
 
 ```sh
-git add -A && git commit -m "sync: <what changed>"
+git add -A && git commit -m "config: <what changed>"
 ```
