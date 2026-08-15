@@ -279,7 +279,7 @@ title_align center
 # Nord titlebar colors (client.<class> border background text indicator child_border)
 client.focused          #4C566A #3B4252 #D8DEE9 #88C0D0 #4C566A
 client.focused_inactive #353C4A #353C4A #D8DEE9 #88C0D0 #353C4A
-client.unfocused        #2E3440 #2E3440 #D8DEE9 #4C566A #2E3440
+client.unfocused        #1F2329 #2E3440 #D8DEE9 #4C566A #1F2329
 client.urgent           #BF616A #BF616A #ECEFF4 #BF616A #BF616A
 client.placeholder      #3B4252 #3B4252 #D8DEE9 #4C566A #3B4252
 # i3-compatible: hide the tab/stack title bar when a container has only one child
