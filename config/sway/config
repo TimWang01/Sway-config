@@ -268,8 +268,8 @@ popup_during_fullscreen smart
 seat * hide_cursor 5000
 
 ### Window appearance
-# Show default titlebars (title text + dark Nord background)
-default_border none
+# Thin window frame; smart_borders hides it when a window is alone on a workspace
+default_border pixel 4
 default_floating_border none
 font pango:Century Gothic 10
 titlebar_padding 5 4
