@@ -262,6 +262,9 @@ focus_follows_mouse no
 focus_on_window_activation urgent
 # Don't yank attention out of fullscreen apps when popups appear
 popup_during_fullscreen smart
+# Hide the cursor while typing (NOTE: sway-input(5) warns this can interfere
+# with games/Gimp/Blender that need simultaneous mouse+keyboard input)
+seat * hide_cursor when-typing enable
 
 ### Window appearance
 # Thin window frame; smart_borders hides it when a window is alone on a workspace
