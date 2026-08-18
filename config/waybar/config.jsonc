@@ -25,6 +25,7 @@
         "cpu",
         "memory",
         "privacy",
+        "custom/webcam",
         // "temperature",
         // "backlight",
         // "sway/language",
@@ -186,6 +187,12 @@
             {"type": "screenshare", "tooltip": false},
             {"type": "audio-in", "tooltip": false}
         ]
+    },
+    "custom/webcam": {
+        "exec": "$HOME/.config/waybar/webcam.sh",
+        "interval": 2,
+        "return-type": "json",
+        "tooltip": true
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
