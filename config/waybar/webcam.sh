@@ -6,18 +6,23 @@ if [[ ! -e ${devices[0]} ]]; then
     exit 0
 fi
 
-while read -r pid; do
+# Plain fuser stdout is the PID list; the verbose table goes to stderr and is
+# not parsed. Any nonzero status — no holders or an error — means no
+# application is actively using the camera, so stay silent.
+pids=$(fuser "${devices[@]}" 2>/dev/null) || exit 0
+
+for pid in $pids; do
     [[ $pid =~ ^[0-9]+$ ]] || continue
+    # Unavailable or empty metadata must never read as active.
     command_name=$(ps -p "$pid" -o comm= 2>/dev/null || true)
+    command_name=${command_name//[[:space:]]/}
+    [[ -n "$command_name" ]] || continue
     case "$command_name" in
         pipewire|wireplumber|fuser)
             continue
             ;;
     esac
-    printf '{"text":"\uf030","class":"active","tooltip":"Webcam in use"}\n'
+    printf '{"text":"\\uf030","class":"active","tooltip":"Webcam in use"}\n'
     exit 0
-done < <(
-    fuser -v "${devices[@]}" 2>/dev/null \
-        | awk '$3 ~ /^[0-9]+$/ {print $3}' \
-        | sort -u
-)
+done
+exit 0
