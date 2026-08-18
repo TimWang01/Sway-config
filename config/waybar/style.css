@@ -132,6 +132,7 @@ button:hover {
 #wireplumber,
 #custom-media,
 #custom-dnd,
+#custom-webcam,
 #tray,
 #mode,
 #idle_inhibitor,
@@ -142,7 +143,7 @@ button:hover {
 }
 
 #tray, #battery, #cpu, #memory, #disk, #temperature, #backlight,
-#network, #pulseaudio, #wireplumber, #custom-media, #custom-dnd,
+#network, #pulseaudio, #wireplumber, #custom-media, #custom-dnd, #custom-webcam,
 #mode, #idle_inhibitor, #scratchpad, #power-profiles-daemon, #mpd {
     padding: 0;
 }
@@ -370,6 +371,12 @@ label:focus {
 }
 
 #privacy {
+    padding: 0 5px;
+    background-color: @privacy-bg;
+    color: @privacy-fg;
+}
+
+#custom-webcam {
     padding: 0 5px;
     background-color: @privacy-bg;
     color: @privacy-fg;
