@@ -13,8 +13,11 @@ pids=$(fuser "${devices[@]}" 2>/dev/null) || exit 0
 
 for pid in $pids; do
     [[ $pid =~ ^[0-9]+$ ]] || continue
-    # Unavailable or empty metadata must never read as active.
-    command_name=$(ps -p "$pid" -o comm= 2>/dev/null || true)
+    # ps must succeed first: on any nonzero status the metadata is unreliable —
+    # even if partial output was already emitted — so fail closed. Then trim
+    # whitespace and skip empty results; unavailable metadata must never read
+    # as active.
+    command_name=$(ps -p "$pid" -o comm= 2>/dev/null) || continue
     command_name=${command_name//[[:space:]]/}
     [[ -n "$command_name" ]] || continue
     case "$command_name" in
