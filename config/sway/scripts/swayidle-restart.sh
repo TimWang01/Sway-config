@@ -2,10 +2,10 @@
 # Kill existing swayidle, then start fresh
 pkill -xu "$USER" swayidle 2>/dev/null
 
-# Never suspend automatically on BN-SRV; other machines keep the 15-min suspend
+# Never suspend automatically on BN-SRV; other machines keep the 10-min suspend
 SUSPEND_ARGS=()
 if [ "$(hostname)" != "BN-SRV" ]; then
-    SUSPEND_ARGS=(timeout 900 '~/.config/sway/scripts/suspend-if-locked.sh')
+    SUSPEND_ARGS=(timeout 600 '~/.config/sway/scripts/suspend-if-locked.sh')
 fi
 
 exec swayidle -w \
