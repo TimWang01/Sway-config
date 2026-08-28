@@ -91,19 +91,8 @@ in the Sway config can work.
 5. Re-login (or `swaymsg reload`) — Sway loads `~/.config/sway/config` and its
    `config.d/` fragments.
 
-## Committing changes
+## For AI agents
 
-Because `~/.config/{sway,waybar,foot,swaylock,dunst}` are symlinks into this
-repo, there is **no sync step** — editing a live config edits the repo file.
-After a config change, just commit — but stage **only the files you changed**;
-avoid `git add -A`, which can sweep in unrelated edits:
-
-```sh
-git add config/sway/config && git commit -m "sway: <what changed>"
-```
-
-## Validating configs
-
-- Sway: `sway --validate -c config/sway/config`
-- Waybar: `./validate-waybar.sh` (strips `//` and `/* */` comments, then
-  checks the JSON — plain `jq`/`python -m json.tool` can't parse JSONC)
+Operational rules for AI agents working in this repo — commit conventions,
+validation commands, and environment constraints — live in
+[AGENTS.md](AGENTS.md).
