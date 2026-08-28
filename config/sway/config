@@ -53,7 +53,7 @@ output "DP-2" allow_tearing yes
     bindsym $mod+l $lock
 
     # Sleep
-    bindsym $mod+Alt+Delete $sleep
+    bindsym --locked $mod+Alt+Delete $sleep
 
     # Kill focused window
     bindsym $mod+q kill
@@ -73,18 +73,18 @@ output "DP-2" allow_tearing yes
     floating_modifier $mod normal
 
 # Volume control — output
-    bindsym $mod+minus exec $swayosd --output-volume -5
-    bindsym $mod+equal exec $swayosd --output-volume 5
-    bindsym $mod+backslash exec $swayosd --output-volume mute-toggle
+    bindsym --locked $mod+minus exec $swayosd --output-volume -5
+    bindsym --locked $mod+equal exec $swayosd --output-volume 5
+    bindsym --locked $mod+backslash exec $swayosd --output-volume mute-toggle
 # Volume control — input
-    bindsym $mod+Shift+minus exec $swayosd --input-volume -5
-    bindsym $mod+Shift+equal exec $swayosd --input-volume 5
-    bindsym $mod+Shift+backslash exec $swayosd --input-volume mute-toggle
+    bindsym --locked $mod+Shift+minus exec $swayosd --input-volume -5
+    bindsym --locked $mod+Shift+equal exec $swayosd --input-volume 5
+    bindsym --locked $mod+Shift+backslash exec $swayosd --input-volume mute-toggle
 
 # Media control
-    bindsym $mod+Ctrl+x exec $swayosd --playerctl play-pause
-    bindsym $mod+Ctrl+c exec $swayosd --playerctl next
-    bindsym $mod+Ctrl+z exec $swayosd --playerctl prev
+    bindsym --locked $mod+Ctrl+x exec $swayosd --playerctl play-pause
+    bindsym --locked $mod+Ctrl+c exec $swayosd --playerctl next
+    bindsym --locked $mod+Ctrl+z exec $swayosd --playerctl prev
 
 # Launch applications
     bindsym $mod+r exec $menu
