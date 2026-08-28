@@ -59,7 +59,7 @@ install-swayosd.sh      bootstrap script for the swayosd COPR + package
 | Script | Purpose | Run as |
 |---|---|---|
 | `lock-screen.sh` | Lock + DPMS-off after 10 s (idempotent via pgrep guard) | user |
-| `swayidle-restart.sh` | Restarts swayidle with the cascade (lock 5 min / suspend 15 min, BN-SRV exempt) | user |
+| `swayidle-restart.sh` | Restarts swayidle with the cascade (lock 5 min / suspend 15 min) | user |
 | `suspend-if-locked.sh` | `systemctl suspend` only when swaylock is still running | user |
 | `power-key.sh` | Enable/disable power-button → suspend (writes `/etc/systemd/logind.conf.d/power-key.conf`) | sudo |
 | `zram-optimize.sh` | zram = full RAM, lz4+zstd recompression, swappiness 180 tuning | sudo |
