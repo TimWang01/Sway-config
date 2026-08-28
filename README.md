@@ -95,8 +95,15 @@ in the Sway config can work.
 
 Because `~/.config/{sway,waybar,foot,swaylock,dunst}` are symlinks into this
 repo, there is **no sync step** — editing a live config edits the repo file.
-After a config change, just commit:
+After a config change, just commit — but stage **only the files you changed**;
+avoid `git add -A`, which can sweep in unrelated edits:
 
 ```sh
-git add -A && git commit -m "config: <what changed>"
+git add config/sway/config && git commit -m "sway: <what changed>"
 ```
+
+## Validating configs
+
+- Sway: `sway --validate -c config/sway/config`
+- Waybar: `./validate-waybar.sh` (strips `//` and `/* */` comments, then
+  checks the JSON — plain `jq`/`python -m json.tool` can't parse JSONC)
