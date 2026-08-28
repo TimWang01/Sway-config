@@ -111,9 +111,9 @@
     },
     "clock": {
         // "timezone": "America/New_York",
-        "format": "{:%H:%M}",
+        "format": "{:%a, %Y/%m/%d %H:%M}",
         "tooltip-format": "<b>{:%A, %B %d, %Y}</b>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%a, %Y/%m/%d %H:%M}",
+        "format-alt": "{:%H:%M}",
         "format-alt-click": "click-right",
         "calendar": {
             "format": {
