@@ -134,6 +134,9 @@ output "DP-2" allow_tearing yes
     # Switch to last workspace
     bindsym $mod+Tab workspace back_and_forth
 
+    # Switch to the lowest unused workspace number
+    bindsym $mod+Alt+Tab exec ~/.config/sway/scripts/next-empty-workspace.sh
+
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
