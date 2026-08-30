@@ -21,9 +21,9 @@
     font-weight: bold;
 }
 
-/* ===== OSD window: dark pill like the bar's modules ===== */
+/* ===== OSD window: matches dunst corner_radius = 8 (config/dunst/dunstrc) ===== */
 window#osd {
-    border-radius: 999px;
+    border-radius: 8px;
     border: none;
     background: alpha(@bg, 0.95);
     color: @fg;
