@@ -30,7 +30,7 @@ window#osd {
 }
 
 window#osd #container {
-    margin: 16px;
+    margin: 8px;
 }
 
 window#osd image,
