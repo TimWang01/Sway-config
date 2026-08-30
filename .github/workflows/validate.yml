@@ -1,0 +1,25 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate sway config (Fedora container)
+        run: |
+          docker run --rm -v "$PWD":/repo:ro quay.io/fedora/fedora:latest \
+            bash -c "dnf install -y sway >/dev/null 2>&1 && sway --validate -c /repo/config/sway/config"
+
+      - name: Validate waybar JSONC
+        run: ./validate-waybar.sh
+
+      - name: Shell syntax check
+        run: |
+          bash -n config/sway/scripts/*.sh
+          bash -n install-swayosd.sh validate-waybar.sh
