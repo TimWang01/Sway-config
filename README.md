@@ -1,13 +1,27 @@
-# Sway Desktop Configuration (BN-PC)
+# Sway Desktop Configuration
 
-Versioned backup and management repo for the Sway desktop setup on
-**BN-PC** — Fedora Sway Atomic (Sericea), Ryzen 5950X, 14 Gi RAM,
-AMD RX 6600 (RDNA2), 2560x1440@144 Hz on DP-2.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-This repo holds the hand-edited config files and helper scripts. The live
-locations under `~/.config/{sway,waybar,foot,swaylock,dunst,swayosd}` are **symlinks
-into this repo** (`config/...`), so editing a live config edits the repo file
-directly. Commit after any change.
+Hand-edited configuration for a [Sway](https://swaywm.org/) desktop on
+**Fedora Sway Atomic (Sericea)** — a quiet, keyboard-driven Wayland setup with
+a Nord palette, tabbed workspaces, and a "no news is good news" philosophy.
+
+## Features
+
+- **Tabbed workspaces** — `workspace_layout tabbed` with centered titles and
+  thin borders that disappear on lone windows (`smart_borders` + `smart_gaps`)
+- **Nord theme** across sway, waybar, foot, dunst, and swayosd
+- **Idle / lock cascade** — lock at 5 min, suspend at 15 min (only if still
+  locked), display off while locked
+- **Quiet by default** — no notifications, icons, or banners for routine
+  events; indicators only appear when a state is worth knowing about
+- **Event-driven waybar** — audio and DND modules react to `pactl subscribe`
+  and dunst state instead of polling
+- **swayosd OSD** for volume and media feedback (works while locked)
+- **Privacy indicators** — waybar shows mic / camera / screenshare activity
+- **zram tuning** — zram sized to full RAM with lz4+zstd recompression
+- **Config-only** — no patched or rebuilt components; everything is shaped
+  through documented configuration
 
 ## Layout
 
@@ -25,6 +39,109 @@ config/
 install-swayosd.sh      bootstrap script for the swayosd COPR + package
 ```
 
+## Keybindings
+
+`$mod` = Super (Mod4). Bindings marked *locked* also work while the screen is
+locked.
+
+### Window management
+
+| Keys | Action |
+|---|---|
+| `$mod+q` | Kill focused window |
+| `$mod+Shift+q` | Force-kill focused window (SIGKILL) |
+| `$mod+w/a/s/d` | Focus up / left / down / right |
+| `$mod+←/↓/↑/→` | Focus (arrow keys) |
+| `$mod+Shift+w/a/s/d` | Move window up / left / down / right |
+| `$mod+Shift+←/↓/↑/→` | Move window (arrow keys) |
+| `Alt+Tab` / `Alt+Shift+Tab` | Cycle tabs in the focused container |
+| `$mod+f` | Toggle fullscreen |
+| `$mod+Alt+space` | Toggle floating |
+| `$mod+Ctrl+space` | Swap focus between tiling and floating |
+| `$mod+m` | Move window to scratchpad |
+| `$mod+n` | Show / hide scratchpad window |
+| `$mod+Escape` | Open `btop` in a terminal |
+| `$mod+Alt+r` | Open a terminal |
+
+### Workspaces
+
+| Keys | Action |
+|---|---|
+| `$mod+Tab` | Switch to last workspace |
+| `$mod+Alt+Tab` | Switch to lowest unused workspace |
+| `$mod+Alt+Shift+Tab` | Move window to lowest unused workspace |
+| `$mod+1` … `$mod+5` | Switch to workspace 1–5 |
+| `$mod+Alt+1` … `$mod+Alt+5` | Switch to workspace 11–15 |
+| `$mod+Shift+1` … `$mod+Shift+5` | Move window to workspace 1–5 |
+| `$mod+Shift+Alt+1` … `$mod+Shift+Alt+5` | Move window to workspace 11–15 |
+
+### Volume & media (locked)
+
+| Keys | Action |
+|---|---|
+| `$mod+-` / `$mod+=` | Output volume down / up |
+| `$mod+\` | Toggle output mute |
+| `$mod+Shift+-` / `$mod+Shift+=` | Input volume down / up |
+| `$mod+Shift+\` | Toggle input mute |
+| `$mod+Ctrl+x` / `$mod+Ctrl+c` / `$mod+Ctrl+z` | Media play-pause / next / previous |
+
+### Applications
+
+| Keys | Action |
+|---|---|
+| `$mod+r` | Application launcher (rofi) |
+| `$mod+b` | Browser (Firefox) |
+| `$mod+c` | Calculator (KCalc) |
+| `$mod+Alt+c` | Calendar (KOrganizer) |
+| `$mod+e` | File manager (Dolphin) |
+| `$mod+Alt+\` | KeePassXC |
+| `$mod+End` | Toggle night light (wlsunset) |
+| `$mod+Alt+a` | Audio mixer (pavucontrol) |
+| `$mod+Ctrl+n` | Toggle do-not-disturb |
+
+### System
+
+| Keys | Action |
+|---|---|
+| `$mod+l` | Lock screen |
+| `$mod+Alt+Delete` *locked* | Suspend |
+| `$mod+Shift+c` | Reload config |
+| `$mod+Alt+l` | Exit sway (with confirmation) |
+
+### Screenshots (grimshot)
+
+| Keys | Action |
+|---|---|
+| `Print` | Output → clipboard |
+| `Shift+Print` | Output → file |
+| `Alt+Print` | Window → clipboard |
+| `Alt+Shift+Print` | Window → file |
+| `Ctrl+Print` | Area → clipboard |
+| `Ctrl+Shift+Print` | Area → file |
+
+## Installation
+
+1. Install Fedora Sway Atomic (Sericea), then `rpm-ostree install` the layered
+   packages you rely on (foot, waybar, swaylock, dunst, swayosd, etc.).
+2. `bash install-swayosd.sh` (after the `rpm-ostree` reboot).
+3. Symlink the config dirs into `~/.config/` so live configs stay inside the
+   repo (run from the repo root):
+   ```sh
+   ln -s "$PWD/config/sway"     ~/.config/sway
+   ln -s "$PWD/config/waybar"   ~/.config/waybar
+   ln -s "$PWD/config/foot"     ~/.config/foot
+   ln -s "$PWD/config/swaylock" ~/.config/swaylock
+   ln -s "$PWD/config/dunst"    ~/.config/dunst
+   ln -s "$PWD/config/swayosd"  ~/.config/swayosd
+   ```
+4. `chmod +x ~/.config/sway/scripts/*.sh`
+5. Re-login (or `swaymsg reload`) — Sway loads `~/.config/sway/config` and its
+   `config.d/` fragments.
+
+> **Tested on:** Ryzen 5950X, 14 Gi RAM, AMD RX 6600 (RDNA2), 2560x1440@144 Hz
+> on DP-2. The config assumes a single output named `DP-2` — adjust the
+> `output` lines in `config/sway/config` for your hardware.
+
 ## Design principles
 
 - **No news is good news**: the desktop is quiet by default. Routine and
@@ -38,22 +155,6 @@ install-swayosd.sh      bootstrap script for the swayosd COPR + package
   shaped only through their documented configuration. If a feature isn't
   reachable via config (e.g. Waybar's hardcoded calendar header), it's
   accepted as-is rather than hacked into the upstream code.
-
-## Design notes
-
-- **Bar**: Waybar, top, `mode hide`, gradient black background, Nord palette
-  via `@define-color`, bold text, Century Gothic font.
-- **Terminal**: foot, Nord background, tabbed workspace layout
-  (`workspace_layout tabbed`), thin pixel borders hidden on lone windows
-  (`default_border pixel 4` + `smart_borders on`), centered tab titles
-  (`title_align center`).
-- **Idle / lock**: swayidle cascade — lock at 5 min, suspend at 15 min (only
-  if still locked). Lock disables DPMS via a temporary swayidle so the display
-  stays off while locked. See `sway/scripts/`.
-- **Notifications**: dunst, Nord theme, Century Gothic 10, 8px radius.
-- **Audio**: PipeWire + wireplumber; swayosd for OSD; Waybar audio module is
-  event-driven via `pactl subscribe` (`waybar/audio.sh`).
-- **Keyboard**: fcitx5 input method; `$mod` = Mod4 (Super).
 
 ## Helper scripts (config/sway/scripts)
 
@@ -73,25 +174,6 @@ install-swayosd.sh      bootstrap script for the swayosd COPR + package
 `install-swayosd.sh` (repo root) bootstraps the swayosd COPR repo and installs
 the package — needed on a fresh install before the `exec swayosd-server` line
 in the Sway config can work.
-
-## Applying the config on a fresh install
-
-1. Install Fedora Sway Atomic (Sericea), then `rpm-ostree install` the layered
-   packages you rely on (foot, waybar, swaylock, dunst, swayosd, etc.).
-2. `bash install-swayosd.sh` (after `rpm-ostree` reboot).
-3. Symlink the config dirs into `~/.config/` so live configs stay inside the
-   repo:
-   ```sh
-   ln -s /home/b.n/Documents/Documents/Backup/System/Sway/config/sway    ~/.config/sway
-   ln -s /home/b.n/Documents/Documents/Backup/System/Sway/config/waybar  ~/.config/waybar
-   ln -s /home/b.n/Documents/Documents/Backup/System/Sway/config/foot    ~/.config/foot
-   ln -s /home/b.n/Documents/Documents/Backup/System/Sway/config/swaylock ~/.config/swaylock
-   ln -s /home/b.n/Documents/Documents/Backup/System/Sway/config/dunst   ~/.config/dunst
-   ln -s /home/b.n/Documents/Documents/Backup/System/Sway/config/swayosd ~/.config/swayosd
-   ```
-4. `chmod +x ~/.config/sway/scripts/*.sh`
-5. Re-login (or `swaymsg reload`) — Sway loads `~/.config/sway/config` and its
-   `config.d/` fragments.
 
 ## For AI agents
 
