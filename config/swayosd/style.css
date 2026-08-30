@@ -1,0 +1,70 @@
+/* swayosd OSD styled to match the waybar bar (config/waybar/style.css).
+ * Same palette (@define-color names mirror the waybar sheet) and typography,
+ * so volume/brightness/media OSDs look like part of the bar.
+ * Loaded by swayosd-server at startup from ~/.config/swayosd/style.css.
+ */
+
+/* ===== Palette (keep in sync with config/waybar/style.css) ===== */
+@define-color fg          #d8dee9;  /* nord4 */
+@define-color bg          #2e3440;  /* nord0 */
+@define-color active-bg   #4c566a;  /* nord3 */
+@define-color urgent      #bf616a;  /* nord11 */
+@define-color charging    #a3be8c;  /* nord14 */
+@define-color disk        #d08770;  /* nord12 */
+@define-color backlight   #8fbcbb;  /* nord7 */
+@define-color vlc         #ebcb8b;  /* nord13 */
+
+/* ===== Typography (matches waybar's `*` block) ===== */
+* {
+    font-family: 'Century Gothic', monospace;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* ===== OSD window: dark pill like the bar's modules ===== */
+window#osd {
+    border-radius: 999px;
+    border: none;
+    background: alpha(@bg, 0.95);
+    color: @fg;
+}
+
+window#osd #container {
+    margin: 16px;
+}
+
+window#osd image,
+window#osd label {
+    color: @fg;
+}
+
+/* Disabled state (e.g. mute): dim like waybar's low-opacity modules */
+window#osd progressbar:disabled,
+window#osd image:disabled {
+    opacity: 0.25;
+}
+
+/* ===== Progress bars: thin rounded tracks, nord3 trough, fg fill ===== */
+window#osd progressbar,
+window#osd segmentedprogress {
+    min-height: 6px;
+    border-radius: 999px;
+    background: transparent;
+    border: none;
+}
+
+window#osd trough,
+window#osd segment {
+    min-height: inherit;
+    border-radius: inherit;
+    border: none;
+    background: alpha(@fg, 0.3);
+}
+
+window#osd progress,
+window#osd segment.active {
+    min-height: inherit;
+    border-radius: inherit;
+    border: none;
+    background: @fg;
+}

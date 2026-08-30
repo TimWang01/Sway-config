@@ -5,7 +5,7 @@ Operational rules for AI agents editing this repository. Read
 
 ## Live edits
 
-`~/.config/{sway,waybar,foot,swaylock,dunst}` are **symlinks into `config/`**
+`~/.config/{sway,waybar,foot,swaylock,dunst,swayosd}` are **symlinks into `config/`**
 in this repo. There is **no sync step**: editing a live config edits the repo
 file directly, and changes apply to the running desktop immediately (after a
 `swaymsg reload` where needed). Never copy files between the repo and

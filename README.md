@@ -5,7 +5,7 @@ Versioned backup and management repo for the Sway desktop setup on
 AMD RX 6600 (RDNA2), 2560x1440@144 Hz on DP-2.
 
 This repo holds the hand-edited config files and helper scripts. The live
-locations under `~/.config/{sway,waybar,foot,swaylock,dunst}` are **symlinks
+locations under `~/.config/{sway,waybar,foot,swaylock,dunst,swayosd}` are **symlinks
 into this repo** (`config/...`), so editing a live config edits the repo file
 directly. Commit after any change.
 
@@ -21,6 +21,7 @@ config/
   foot/            ~/.config/foot (foot.ini)
   swaylock/        ~/.config/swaylock (config)
   dunst/           ~/.config/dunst (dunstrc — Nord theme)
+  swayosd/         ~/.config/swayosd (style.css — mirrors the waybar theme)
 install-swayosd.sh      bootstrap script for the swayosd COPR + package
 ```
 
@@ -86,6 +87,7 @@ in the Sway config can work.
    ln -s /home/b.n/Documents/Documents/Backup/System/Sway/config/foot    ~/.config/foot
    ln -s /home/b.n/Documents/Documents/Backup/System/Sway/config/swaylock ~/.config/swaylock
    ln -s /home/b.n/Documents/Documents/Backup/System/Sway/config/dunst   ~/.config/dunst
+   ln -s /home/b.n/Documents/Documents/Backup/System/Sway/config/swayosd ~/.config/swayosd
    ```
 4. `chmod +x ~/.config/sway/scripts/*.sh`
 5. Re-login (or `swaymsg reload`) — Sway loads `~/.config/sway/config` and its
