@@ -53,7 +53,7 @@ output "DP-2" allow_tearing yes
     bindsym $mod+l $lock
 
     # Sleep
-    bindsym --locked $mod+Alt+Delete $sleep
+    bindsym --locked $mod+Delete $sleep
 
     # Kill focused window
     bindsym $mod+q kill
