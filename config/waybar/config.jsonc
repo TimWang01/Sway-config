@@ -212,7 +212,9 @@
     },
     "custom/keep-awake": {
         "exec": "$HOME/.config/waybar/keep-awake.sh",
-        "interval": 2,
+        // Push on toggle (SIGRTMIN+8); 30s poll as fallback if the inhibitor dies externally
+        "signal": 8,
+        "interval": 30,
         "on-click": "$HOME/.config/sway/scripts/keep-awake-toggle.sh",
         "tooltip": true,
         "tooltip-format": "Keep awake — Super+Ctrl+L"

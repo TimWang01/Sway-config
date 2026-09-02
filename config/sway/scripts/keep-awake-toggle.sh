@@ -9,6 +9,9 @@
 #
 # Press the binding again to release the inhibitor; swayidle re-arms its
 # timeouts from scratch via logind's PropertiesChanged signal.
+#
+# After toggling, signals waybar (SIGRTMIN+8) so the keep-awake indicator
+# updates immediately instead of waiting for its poll interval.
 
 set -eu
 
@@ -27,3 +30,6 @@ else
     systemd-inhibit --what=idle --why="keep-awake toggle" sleep infinity &
     echo $! > "$PID_FILE"
 fi
+
+# Push the new state to waybar (custom/keep-awake signal 8)
+pkill -RTMIN+8 waybar 2>/dev/null || true
