@@ -3,12 +3,21 @@
 # Read `man 5 sway` for a complete reference.
 
 ### Variables
+# Mod key (Mod4 = Super/Win; Mod1 = Alt)
 set $mod Mod4
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
+
+# --- Paths ---
+# Helper scripts directory
+set $scripts ~/.config/sway/scripts
+# Wallpaper image
+set $wallpaper ~/.config/wallpaper
+
+# --- Applications ---
 # Terminal emulator
 set $term foot
 # Application launcher
@@ -18,22 +27,55 @@ set $rofi_cmd rofi \
         -terminal '$term'
 set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 set $browser firefox
-set $file-manager ~/.config/sway/scripts/dolphin-wrapper.sh
-set $wallpaper ~/.config/wallpaper
-set $lock exec ~/.config/sway/scripts/lock-screen.sh
-# Audio/OSD control
+set $file-manager $scripts/dolphin-wrapper.sh
+set $calc flatpak run org.kde.kcalc
+set $calendar korganizer
+set $password-manager flatpak run org.keepassxc.KeePassXC
+set $mixer pavucontrol
+
+# --- Lock screen ---
+set $lock exec $scripts/lock-screen.sh
+
+# --- Audio/OSD control ---
 set $swayosd swayosd-client
+
+# --- Display ---
+# Primary output name (see: swaymsg -t get_outputs) and its mode
+set $primary_output DP-2
+set $primary_res 2560x1440@144Hz
+
+# --- Appearance ---
+set $font pango:Century Gothic Bold 10
+set $border_width 4
+set $resize_step 10px
+set $workspace_layout tabbed
+
+# --- Nord palette (titlebar colors) ---
+set $nord0 #2E3440
+set $nord1 #3B4252
+set $nord3 #4C566A
+set $nord4 #D8DEE9
+set $nord6 #ECEFF4
+set $nord8 #88C0D0
+set $nord11 #BF616A
+# Custom dimmed/deep variants for inactive/unfocused states
+set $nord-dim #353C4A
+set $nord-deep #1F2329
+
+# --- Input ---
+set $pointer_accel 0
+set $repeat_delay 250
 
 ### Output configuration
 output * bg $wallpaper fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output "DP-2" mode 2560x1440@144Hz adaptive_sync on
+output $primary_output mode $primary_res adaptive_sync on
 # Composite 1ms before refresh → lower input latency (official tuning start;
 # bump by 1 only if frame drops appear; values >3ms degrade VRR on RDNA2)
-output "DP-2" max_render_time 1
+output $primary_output max_render_time 1
 # Allow screen tearing for fullscreen apps that request it (async page flips).
 # Only active when window is fullscreen + app allows it; no cost when idle.
-output "DP-2" allow_tearing yes
+output $primary_output allow_tearing yes
 
 ### Idle configuration
 # swayidle config is in config.d/90-swayidle.conf
@@ -52,13 +94,13 @@ output "DP-2" allow_tearing yes
     bindsym $mod+l $lock
 
     # Toggle keep-awake (logind idle inhibitor — disables swayidle lock/suspend cascade)
-    bindsym --locked $mod+Ctrl+l exec ~/.config/sway/scripts/keep-awake-toggle.sh
+    bindsym --locked $mod+Ctrl+l exec $scripts/keep-awake-toggle.sh
 
     # Kill focused window
     bindsym $mod+q kill
 
     # Force-kill focused window (SIGKILL, no save prompts)
-    bindsym $mod+Shift+q exec ~/.config/sway/scripts/force-kill.sh
+    bindsym $mod+Shift+q exec $scripts/force-kill.sh
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
@@ -88,19 +130,19 @@ output "DP-2" allow_tearing yes
 # Launch applications
     bindsym $mod+r exec $menu
     bindsym $mod+b exec $browser
-    bindsym $mod+c exec flatpak run org.kde.kcalc
-    bindsym $mod+Alt+c exec korganizer
+    bindsym $mod+c exec $calc
+    bindsym $mod+Alt+c exec $calendar
     bindsym $mod+e exec $file-manager
-    bindsym $mod+Alt+backslash exec flatpak run org.keepassxc.KeePassXC
+    bindsym $mod+Alt+backslash exec $password-manager
 
     # Toggle night light
-    bindsym $mod+End exec ~/.config/sway/scripts/night-light-toggle.sh
+    bindsym $mod+End exec $scripts/night-light-toggle.sh
 
     # Audio mixer
-    bindsym $mod+Alt+a exec pavucontrol
+    bindsym $mod+Alt+a exec $mixer
 
     # Toggle notifications (do-not-disturb)
-    bindsym $mod+Ctrl+n exec ~/.config/sway/scripts/dnd-toggle.sh
+    bindsym $mod+Ctrl+n exec $scripts/dnd-toggle.sh
 
 # Moving around
     # Move your focus around (WASD)
@@ -134,10 +176,10 @@ output "DP-2" allow_tearing yes
     bindsym $mod+Tab workspace back_and_forth
 
     # Switch to the lowest unused workspace number
-    bindsym $mod+Alt+Tab exec ~/.config/sway/scripts/next-empty-workspace.sh
+    bindsym $mod+Alt+Tab exec $scripts/next-empty-workspace.sh
 
     # Move focused container to the lowest unused workspace number
-    bindsym $mod+Alt+Shift+Tab exec ~/.config/sway/scripts/next-empty-workspace.sh move
+    bindsym $mod+Alt+Shift+Tab exec $scripts/next-empty-workspace.sh move
 
     # Switch to workspace
     bindsym $mod+1 workspace number 1
@@ -168,7 +210,7 @@ output "DP-2" allow_tearing yes
     bindsym $mod+f fullscreen
 
     # Default layout for new workspaces: tabs instead of side-by-side stacking
-    workspace_layout tabbed
+workspace_layout $workspace_layout
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Alt+space floating toggle
@@ -194,10 +236,10 @@ output "DP-2" allow_tearing yes
         # right will grow the containers width
         # up will shrink the containers height
         # down will grow the containers height
-        bindsym $left resize shrink width 10px
-        bindsym $down resize grow height 10px
-        bindsym $up resize shrink height 10px
-        bindsym $right resize grow width 10px
+        bindsym $left resize shrink width $resize_step
+        bindsym $down resize grow height $resize_step
+        bindsym $up resize shrink height $resize_step
+        bindsym $right resize grow width $resize_step
 
         # Ditto, with arrow keys
         bindsym Left resize shrink width 10px
@@ -248,17 +290,17 @@ input * {
     natural_scroll disabled
     dwt enabled
     accel_profile "flat" # disable mouse acceleration (enabled by default; to set it manually, use "adaptive" instead of "flat")
-    pointer_accel 0 # set mouse sensitivity (between -1 and 1)
-    repeat_delay 250
+    pointer_accel $pointer_accel # set mouse sensitivity (between -1 and 1)
+    repeat_delay $repeat_delay
 }
 
 ### Autostart
-exec ~/.config/sway/scripts/night-light-toggle.sh
+exec $scripts/night-light-toggle.sh
 exec swayosd-server
 exec_always systemctl --user set-environment KDE_SESSION_VERSION=6 XDG_CURRENT_DESKTOP=KDE
 # Kill gnome-keyring — KeePassXC will take over as secret service provider
 # (KeePassXC autostarts via ~/.config/autostart/ with SecretServiceIntegrationEnabled)
-#exec_always ~/.config/sway/scripts/disable-gnome-keyring.sh
+#exec_always $scripts/disable-gnome-keyring.sh
 exec_always fcitx5 -d --replace
 
 ### Behavior
@@ -270,19 +312,19 @@ popup_during_fullscreen smart
 
 ### Window appearance
 # Thin window frame; smart_borders hides it when a window is alone on a workspace
-default_border pixel 4
+default_border pixel $border_width
 default_floating_border none
-font pango:Century Gothic Bold 10
+font $font
 titlebar_padding 5 4
 titlebar_border_thickness 1
 # Center the title text in the title bar / tabs
 title_align center
 # Nord titlebar colors (client.<class> border background text indicator child_border)
-client.focused          #4C566A #3B4252 #D8DEE9 #88C0D0 #4C566A
-client.focused_inactive #353C4A #353C4A #D8DEE9 #88C0D0 #353C4A
-client.unfocused        #1F2329 #2E3440 #D8DEE9 #4C566A #1F2329
-client.urgent           #BF616A #BF616A #ECEFF4 #BF616A #BF616A
-client.placeholder      #3B4252 #3B4252 #D8DEE9 #4C566A #3B4252
+client.focused          $nord3 $nord1 $nord4 $nord8 $nord3
+client.focused_inactive $nord-dim $nord-dim $nord4 $nord8 $nord-dim
+client.unfocused        $nord-deep $nord0 $nord4 $nord3 $nord-deep
+client.urgent           $nord11 $nord11 $nord6 $nord11 $nord11
+client.placeholder      $nord1 $nord1 $nord4 $nord3 $nord1
 # i3-compatible: hide the tab/stack title bar when a container has only one child
 hide_edge_borders --i3 none
 
@@ -292,5 +334,5 @@ bar {
     swaybar_command waybar
     position top
     mode hide
-    modifier Mod4
+    modifier $mod
 }
