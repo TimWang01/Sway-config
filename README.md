@@ -166,6 +166,7 @@ locked.
 | `swayidle-restart.sh` | Restarts swayidle with the cascade (lock 5 min / suspend 10 min) | user |
 | `suspend-if-locked.sh` | `systemctl suspend` only when swaylock is still running | user |
 | `keep-awake-toggle.sh` | Toggle logind idle inhibitor — disables swayidle lock/suspend cascade while held | user |
+| `dnd-toggle.sh` | Toggle do-not-disturb (dunst paused) + push state to waybar | user |
 | `power-key.sh` | Enable/disable power-button → suspend (writes `/etc/systemd/logind.conf.d/power-key.conf`) | sudo |
 | `zram-optimize.sh` | zram = full RAM, zstd compression, swappiness 180 tuning | sudo |
 | `disable-gnome-keyring.sh` | Masks GNOME Keyring autostart + kills daemon (KeePassXC owns the secret service) | user |

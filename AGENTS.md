@@ -29,6 +29,19 @@ file directly, and changes apply to the running desktop immediately (after a
 - Waybar: `./validate-waybar.sh` (strips `//` and `/* */` comments, then
   checks the JSON — plain `jq`/`python -m json.tool` can't parse JSONC)
 
+## Change hygiene
+
+- **Verify current state before changing**: check `git log`/`git diff` for
+  recent user edits and confirm the requested behavior isn't already in place —
+  the user may be working from a stale mental model of the config.
+- **Keep README in sync**: update the keybindings, helper-scripts, and features
+  tables in the same commit as the script/binding change.
+
+## Playbooks
+
+- Adding a keyboard-toggled waybar state module (keep-awake, dnd): see
+  [docs/waybar-toggle-module.md](docs/waybar-toggle-module.md).
+
 ## Design principles (constrain behavior)
 
 - **No news is good news**: the desktop is quiet by default. Do not add
