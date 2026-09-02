@@ -21,7 +21,6 @@ set $browser firefox
 set $file-manager ~/.config/sway/scripts/dolphin-wrapper.sh
 set $wallpaper ~/.config/wallpaper
 set $lock exec ~/.config/sway/scripts/lock-screen.sh
-set $sleep exec systemctl suspend
 # Audio/OSD control
 set $swayosd swayosd-client
 
@@ -51,9 +50,6 @@ output "DP-2" allow_tearing yes
 
     # Lock screen
     bindsym $mod+l $lock
-
-    # Sleep
-    bindsym --locked $mod+Delete $sleep
 
     # Kill focused window
     bindsym $mod+q kill

@@ -11,8 +11,7 @@ a Nord palette, tabbed workspaces, and a "no news is good news" philosophy.
 - **Tabbed workspaces** — `workspace_layout tabbed` with centered titles and
   thin borders that disappear on lone windows (`smart_borders` + `smart_gaps`)
 - **Nord theme** across sway, waybar, foot, dunst, and swayosd
-- **Idle / lock cascade** — lock at 5 min, suspend at 15 min (only if still
-  locked), display off while locked
+- **Idle / lock cascade** — lock at 5 min, display off while locked
 - **Quiet by default** — no notifications, icons, or banners for routine
   events; indicators only appear when a state is worth knowing about
 - **Event-driven waybar** — audio and DND modules react to `pactl subscribe`
@@ -161,8 +160,7 @@ locked.
 | Script | Purpose | Run as |
 |---|---|---|
 | `lock-screen.sh` | Lock + DPMS-off after 10 s (idempotent via pgrep guard) | user |
-| `swayidle-restart.sh` | Restarts swayidle with the cascade (lock 5 min / suspend 15 min) | user |
-| `suspend-if-locked.sh` | `systemctl suspend` only when swaylock is still running | user |
+| `swayidle-restart.sh` | Restarts swayidle with the cascade (lock 5 min / display off) | user |
 | `power-key.sh` | Enable/disable power-button → suspend (writes `/etc/systemd/logind.conf.d/power-key.conf`) | sudo |
 | `zram-optimize.sh` | zram = full RAM, lz4+zstd recompression, swappiness 180 tuning | sudo |
 | `zram-recompress.sh` | One-shot: mark idle pages, recompress with zstd (threshold 1500) | sudo |
