@@ -19,7 +19,7 @@ a Nord palette, tabbed workspaces, and a "no news is good news" philosophy.
   and dunst state instead of polling
 - **swayosd OSD** for volume and media feedback (works while locked)
 - **Privacy indicators** — waybar shows mic / camera / screenshare activity
-- **zram tuning** — zram sized to full RAM with lz4+zstd recompression
+- **zram tuning** — zram sized to full RAM with zstd compression
 - **Config-only** — no patched or rebuilt components; everything is shaped
   through documented configuration
 
@@ -163,7 +163,7 @@ locked.
 | `swayidle-restart.sh` | Restarts swayidle with the cascade (lock 5 min / suspend 10 min) | user |
 | `suspend-if-locked.sh` | `systemctl suspend` only when swaylock is still running | user |
 | `power-key.sh` | Enable/disable power-button → suspend (writes `/etc/systemd/logind.conf.d/power-key.conf`) | sudo |
-| `zram-optimize.sh` | zram = full RAM, lz4+zstd recompression, swappiness 180 tuning | sudo |
+| `zram-optimize.sh` | zram = full RAM, zstd compression, swappiness 180 tuning | sudo |
 | `zram-recompress.sh` | One-shot: mark idle pages, recompress with zstd (threshold 1500) | sudo |
 | `disable-gnome-keyring.sh` | Masks GNOME Keyring autostart + kills daemon (KeePassXC owns the secret service) | user |
 | `night-light-toggle.sh` | Toggle wlsunset night light | user |

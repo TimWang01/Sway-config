@@ -1,8 +1,9 @@
 #!/bin/bash
 # zram-recompress.sh — mark idle pages and trigger zram recompression.
 #
-# Uses the configured secondary algorithm (zstd, priority 1) to recompress
-# cold pages that the primary algorithm (lz4) handled with a poor ratio.
+# Recompresses idle pages with zstd (priority 1). Note: with zstd as the only
+# configured algorithm this is a no-op — it only pays off when a secondary
+# algorithm (multi-comp) is configured.
 # Run as root (from a systemd timer or manually via sudo).
 #
 #   sudo ~/.config/sway/scripts/zram-recompress.sh
