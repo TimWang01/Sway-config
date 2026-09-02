@@ -25,9 +25,6 @@
 @define-color temperature    #d08770;  /* nord12 */
 @define-color vlc            #ebcb8b;  /* nord13 */
 
-/* Keep-awake (logind idle inhibitor) */
-@define-color keep-awake     #8fbcbb;  /* nord7 — screen stays on */
-
 /* Media / MPD */
 @define-color media-bg       #a3be8c;  /* nord14 */
 @define-color media-fg       #2e3440;  /* nord0 */
@@ -372,12 +369,6 @@ label:focus {
     padding: 0 5px;
     background-color: @privacy-bg;
     color: @privacy-fg;
-}
-
-/* Keep-awake only appears while the inhibitor is held; hover hints it is
- * clickable (toggles the inhibitor off). */
-#custom-keep-awake:hover {
-    color: @keep-awake;
 }
 
 #privacy-item {
