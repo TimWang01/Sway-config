@@ -25,6 +25,9 @@
 @define-color temperature    #d08770;  /* nord12 */
 @define-color vlc            #ebcb8b;  /* nord13 */
 
+/* Keep-awake (logind idle inhibitor) */
+@define-color keep-awake     #8fbcbb;  /* nord7 — screen stays on */
+
 /* Media / MPD */
 @define-color media-bg       #a3be8c;  /* nord14 */
 @define-color media-fg       #2e3440;  /* nord0 */
@@ -132,6 +135,7 @@ button:hover {
 #wireplumber,
 #custom-media,
 #custom-dnd,
+#custom-keep-awake,
 #custom-webcam,
 #tray,
 #mode,
@@ -143,7 +147,7 @@ button:hover {
 }
 
 #tray, #battery, #cpu, #memory, #disk, #temperature, #backlight,
-#network, #pulseaudio, #wireplumber, #custom-media, #custom-dnd, #custom-webcam,
+#network, #pulseaudio, #wireplumber, #custom-media, #custom-dnd, #custom-keep-awake, #custom-webcam,
 #mode, #idle_inhibitor, #scratchpad, #power-profiles-daemon, #mpd {
     padding: 0;
 }
@@ -380,6 +384,12 @@ label:focus {
     padding: 0 5px;
     background-color: @privacy-bg;
     color: @privacy-fg;
+}
+
+/* Keep-awake only appears while the inhibitor is held; hover hints it is
+ * clickable (toggles the inhibitor off). */
+#custom-keep-awake:hover {
+    color: @keep-awake;
 }
 
 #privacy-item {

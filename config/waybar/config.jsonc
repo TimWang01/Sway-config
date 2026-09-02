@@ -21,6 +21,7 @@
         // "custom/media",
         "custom/audio",
         "custom/dnd",
+        "custom/keep-awake",
         "network",
         "cpu",
         "memory",
@@ -215,6 +216,13 @@
         "interval": 2,
         "on-click": "dunstctl set-paused toggle",
         "tooltip": false
+    },
+    "custom/keep-awake": {
+        "exec": "$HOME/.config/waybar/keep-awake.sh",
+        "interval": 2,
+        "on-click": "$HOME/.config/sway/scripts/keep-awake-toggle.sh",
+        "tooltip": true,
+        "tooltip-format": "Keep awake — Super+Ctrl+L"
     },
     "custom/media": {
         "format": "{icon} {text}",
