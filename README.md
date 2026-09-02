@@ -164,7 +164,6 @@ locked.
 | `suspend-if-locked.sh` | `systemctl suspend` only when swaylock is still running | user |
 | `power-key.sh` | Enable/disable power-button → suspend (writes `/etc/systemd/logind.conf.d/power-key.conf`) | sudo |
 | `zram-optimize.sh` | zram = full RAM, zstd compression, swappiness 180 tuning | sudo |
-| `zram-recompress.sh` | One-shot: mark idle pages, recompress with zstd (threshold 1500) | sudo |
 | `disable-gnome-keyring.sh` | Masks GNOME Keyring autostart + kills daemon (KeePassXC owns the secret service) | user |
 | `night-light-toggle.sh` | Toggle wlsunset night light | user |
 | `dolphin-wrapper.sh` | Launches Dolphin with forced dark-theme env | user |
