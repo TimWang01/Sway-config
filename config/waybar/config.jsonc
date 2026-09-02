@@ -207,7 +207,8 @@
         "exec": "$HOME/.config/waybar/dnd.sh",
         "interval": 2,
         "on-click": "dunstctl set-paused toggle",
-        "tooltip": false
+        "tooltip": true,
+        "tooltip-format": "Do not disturb — Super+Ctrl+N"
     },
     "custom/keep-awake": {
         "exec": "$HOME/.config/waybar/keep-awake.sh",
