@@ -139,7 +139,6 @@ button:hover {
 #custom-webcam,
 #tray,
 #mode,
-#idle_inhibitor,
 #scratchpad,
 #power-profiles-daemon,
 #mpd {
@@ -148,7 +147,7 @@ button:hover {
 
 #tray, #battery, #cpu, #memory, #disk, #temperature, #backlight,
 #network, #pulseaudio, #wireplumber, #custom-media, #custom-dnd, #custom-keep-awake, #custom-webcam,
-#mode, #idle_inhibitor, #scratchpad, #power-profiles-daemon, #mpd {
+#mode, #scratchpad, #power-profiles-daemon, #mpd {
     padding: 0;
 }
 
@@ -312,17 +311,6 @@ label:focus {
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
     background-color: @urgent;
-}
-
-#idle_inhibitor {
-    opacity: 0.25;
-    color: @bg;
-}
-
-#idle_inhibitor.activated,
-#idle_inhibitor:hover {
-    opacity: 1.0;
-    color: @fg;
 }
 
 #mpd {
