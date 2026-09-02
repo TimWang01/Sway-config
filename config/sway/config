@@ -100,7 +100,7 @@ output "DP-2" allow_tearing yes
     bindsym $mod+Alt+a exec pavucontrol
 
     # Toggle notifications (do-not-disturb)
-    bindsym $mod+Ctrl+n exec dunstctl set-paused toggle
+    bindsym $mod+Ctrl+n exec ~/.config/sway/scripts/dnd-toggle.sh
 
 # Moving around
     # Move your focus around (WASD)

@@ -205,8 +205,10 @@
     },
     "custom/dnd": {
         "exec": "$HOME/.config/waybar/dnd.sh",
-        "interval": 2,
-        "on-click": "dunstctl set-paused toggle",
+        // Push on toggle (SIGRTMIN+9); 30s poll as fallback if dunst state changes externally
+        "signal": 9,
+        "interval": 30,
+        "on-click": "$HOME/.config/sway/scripts/dnd-toggle.sh",
         "tooltip": true,
         "tooltip-format": "Do not disturb — Super+Ctrl+N"
     },
