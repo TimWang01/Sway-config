@@ -13,6 +13,8 @@ a Nord palette, tabbed workspaces, and a "no news is good news" philosophy.
 - **Nord theme** across sway, waybar, foot, dunst, and swayosd
 - **Idle / lock cascade** — lock at 5 min, suspend at 10 min (only if still
   locked), display off while locked
+- **Keep-awake toggle** — `$mod+Ctrl+l` holds a logind idle inhibitor so the
+  lock/suspend cascade stays off until toggled again (works while locked)
 - **Quiet by default** — no notifications, icons, or banners for routine
   events; indicators only appear when a state is worth knowing about
 - **Event-driven waybar** — audio and DND modules react to `pactl subscribe`
@@ -104,6 +106,7 @@ locked.
 | Keys | Action |
 |---|---|
 | `$mod+l` | Lock screen |
+| `$mod+Ctrl+l` *locked* | Toggle keep-awake (disable idle lock/suspend) |
 | `$mod+Shift+c` | Reload config |
 | `$mod+Alt+l` | Exit sway (with confirmation) |
 
@@ -162,6 +165,7 @@ locked.
 | `lock-screen.sh` | Lock + DPMS-off after 10 s (idempotent via pgrep guard) | user |
 | `swayidle-restart.sh` | Restarts swayidle with the cascade (lock 5 min / suspend 10 min) | user |
 | `suspend-if-locked.sh` | `systemctl suspend` only when swaylock is still running | user |
+| `keep-awake-toggle.sh` | Toggle logind idle inhibitor — disables swayidle lock/suspend cascade while held | user |
 | `power-key.sh` | Enable/disable power-button → suspend (writes `/etc/systemd/logind.conf.d/power-key.conf`) | sudo |
 | `zram-optimize.sh` | zram = full RAM, zstd compression, swappiness 180 tuning | sudo |
 | `disable-gnome-keyring.sh` | Masks GNOME Keyring autostart + kills daemon (KeePassXC owns the secret service) | user |

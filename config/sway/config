@@ -51,6 +51,9 @@ output "DP-2" allow_tearing yes
     # Lock screen
     bindsym $mod+l $lock
 
+    # Toggle keep-awake (logind idle inhibitor — disables swayidle lock/suspend cascade)
+    bindsym --locked $mod+Ctrl+l exec ~/.config/sway/scripts/keep-awake-toggle.sh
+
     # Kill focused window
     bindsym $mod+q kill
 
