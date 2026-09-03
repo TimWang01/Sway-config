@@ -298,9 +298,6 @@ input * {
 exec $scripts/night-light-toggle.sh
 exec swayosd-server
 exec_always systemctl --user set-environment KDE_SESSION_VERSION=6 XDG_CURRENT_DESKTOP=KDE
-# Kill gnome-keyring — KeePassXC will take over as secret service provider
-# (KeePassXC autostarts via ~/.config/autostart/ with SecretServiceIntegrationEnabled)
-#exec_always $scripts/disable-gnome-keyring.sh
 exec_always fcitx5 -d --replace
 
 ### Behavior
