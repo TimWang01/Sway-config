@@ -36,6 +36,9 @@ file directly, and changes apply to the running desktop immediately (after a
   the user may be working from a stale mental model of the config.
 - **Keep README in sync**: update the keybindings, helper-scripts, and features
   tables in the same commit as the script/binding change.
+- **Persist research-only findings**: when a research-only topic closes with no
+  implementation, write the findings to `docs/<topic>.md` (symptom/question,
+  findings, caveats, status) so they survive session boundaries.
 
 ## Playbooks
 
