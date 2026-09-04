@@ -256,6 +256,7 @@ workspace_layout $workspace_layout
     for_window [app_id="org.keepassxc.KeePassXC"] floating enable
     for_window [app_id="com.valvesoftware.Steam"] floating enable
     for_window [class="(?i)steam"] floating enable
+    for_window [app_id="org.kde.kcalc"] floating enable
     # Dialogs (open/save windows, etc.) float instead of wrecking the tiling layout
     for_window [window_type="dialog"] floating enable
 
