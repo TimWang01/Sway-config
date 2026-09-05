@@ -158,9 +158,6 @@ button:hover {
     min-width: 16px;
     min-height: 16px;
     padding: 0 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #window,
