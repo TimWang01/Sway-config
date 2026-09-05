@@ -13,6 +13,17 @@ doesn't: the goal is a boring workspace that fits like a glove and shuts
 itself up most of the time. It only speaks up when something actually needs
 attention — like when the system is about to run into OOM.
 
+## Demo
+
+![Hero view](res/hero%20view.png)
+
+- **Usage in action** — a walkthrough of the desktop:
+  <video src="res/usage%20in%20action.mp4" controls></video>
+- **Appearance of actionable icons** — how icons show up when relevant:
+  <video src="res/appearance%20of%20actionable%20icons.mp4" controls></video>
+- **Tray icons on hover** — tray icons revealed on hover:
+  <video src="res/tray%20icons%20are%20shown%20on%20hover.mp4" controls></video>
+
 ## Features
 
 - **Tabbed workspaces** — `workspace_layout tabbed` with centered titles and
