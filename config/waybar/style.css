@@ -148,6 +148,21 @@ button:hover {
     padding: 0;
 }
 
+/* Fixed 16x16 icon surfaces (glyph modules) with 4px horizontal padding.
+ * #custom-audio is the live volume module (custom/audio); #pulseaudio is legacy. */
+#custom-dnd,
+#custom-keep-awake,
+#custom-power-profile,
+#custom-audio,
+#pulseaudio {
+    min-width: 16px;
+    min-height: 16px;
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #window,
 #workspaces {
     margin: 0 4px;
@@ -286,7 +301,7 @@ label:focus {
 }
 
 #tray > widget > image {
-    padding: 0 2px;
+    padding: 0 4px;
     min-width: 16px;
     min-height: 16px;
 }
