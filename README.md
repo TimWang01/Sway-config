@@ -127,20 +127,21 @@ Everything below is installed once per system; nothing here is bundled in the
 repo. On Fedora Sway Atomic (Sericea) the system packages are layered with
 `rpm-ostree install` (reboot to activate), and the apps come from Flathub.
 
-**Layered packages** (core desktop):
+Most of the desktop stack already ships with Sericea — sway, swayidle,
+swaylock, waybar, foot, dunst, grim (provides `grimshot`), rofi, wlsunset,
+pavucontrol, playerctl, jq, psmisc (`fuser`), procps-ng (`pgrep`/`pkill`),
+pulseaudio-utils (`pactl`), and firefox are all in the base image. Only the
+following need extra installs:
+
+**Layered packages**:
 
 ```sh
-rpm-ostree install sway swayidle swaylock waybar foot dunst grim rofi \
-    wlsunset btop pavucontrol playerctl jq psmisc procps-ng \
-    power-profiles-daemon
+rpm-ostree install power-profiles-daemon
 ```
 
-- `sway` also provides `swaynag`; `grim` provides `grimshot` (screenshots).
-- `psmisc` provides `fuser` (webcam indicator), `procps-ng` provides
-  `pgrep`/`pkill` (notification restart, swayidle).
 - `power-profiles-daemon` backs the waybar power-profiles module.
-- `pipewire-pulse` (usually preinstalled) provides `pactl` for the audio
-  module.
+- `btop` (system monitor) is optional and not in the base image — install it
+  however you prefer (`rpm-ostree install btop`, brew, etc.).
 
 **swayosd** (OSD for volume/brightness) — not in Fedora repos; install via the
 repo's script:
@@ -152,18 +153,18 @@ bash install-swayosd.sh
 **Flatpak apps** (launched by keybindings):
 
 ```sh
-flatpak install flathub org.kde.kcalc org.keepassxc.KeePassXC \
-    org.mozilla.firefox org.kde.dolphin
+flatpak install flathub org.kde.kcalc org.keepassxc.KeePassXC
 ```
 
 - `org.kde.kcalc` is the calculator, `org.keepassxc.KeePassXC` the password
-  manager, `org.kde.dolphin` the file manager (falls back to `thunar` if
-  absent).
-- `korganizer` (calendar) is optional — install the `korganizer` rpm or the
-  `org.kde.korganizer` flatpak if you use the calendar binding.
+  manager.
+- The file manager (`dolphin`) and calendar (`korganizer`) are layered rpms on
+  this setup; the flatpak equivalents (`org.kde.dolphin`,
+  `org.kde.korganizer`) work too.
 
 **Optional**: the waybar media module (`mediaplayer.py`, currently commented
-out) needs `python3-gi`, `python3-gi-cairo`, and `python3-dbus`.
+out) needs `python3-gi` and `python3-gi-cairo` (`python3-dbus` is in the base
+image).
 
 ## Installation
 
