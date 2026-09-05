@@ -158,6 +158,11 @@ bash install-swayosd.sh
 user-locally from the [Papirus GitHub repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
 (`./install.sh`) or layer the `papirus-icon-theme` rpm.
 
+**Century Gothic font** — used by the waybar and swayosd styles
+(`font-family: 'Century Gothic'`). A proprietary Microsoft font, not in Fedora
+repos; copy the TTF into `~/.local/share/fonts/` (e.g.
+`~/.local/share/fonts/c/CenturyGothic.ttf`) and run `fc-cache -f`.
+
 **Flatpak apps** (launched by keybindings):
 
 ```sh
