@@ -46,5 +46,6 @@ A state toggle has three parts:
 |---|---|---|
 | keep-awake | 8 | `keep-awake-toggle.sh` |
 | dnd | 9 | `dnd-toggle.sh` |
+| power-profile | 10 | `power-profile-cycle.sh` |
 
 Pick the next free number (10+) for a new module.

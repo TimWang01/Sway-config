@@ -15,6 +15,8 @@ a Nord palette, tabbed workspaces, and a "no news is good news" philosophy.
   locked), display off while locked
 - **Keep-awake toggle** — `$mod+Ctrl+l` holds a logind idle inhibitor so the
   lock/suspend cascade stays off until toggled again (works while locked)
+- **Power profile cycle** — `$mod+Ctrl+p` cycles power-saver → balanced →
+  performance; the waybar indicator shows only when not balanced
 - **Quiet by default** — no notifications, icons, or banners for routine
   events; indicators only appear when a state is worth knowing about
 - **Event-driven waybar** — audio and DND modules react to `pactl subscribe`
@@ -107,6 +109,7 @@ locked.
 |---|---|
 | `$mod+l` | Lock screen |
 | `$mod+Ctrl+l` *locked* | Toggle keep-awake (disable idle lock/suspend) |
+| `$mod+Ctrl+p` | Cycle power profile (power-saver / balanced / performance) |
 | `$mod+Shift+c` | Reload config |
 | `$mod+Alt+l` | Exit sway (with confirmation) |
 
@@ -211,6 +214,7 @@ image).
 | `swayidle-restart.sh` | Restarts swayidle with the cascade (lock 5 min / suspend 10 min) | user |
 | `suspend-if-locked.sh` | `systemctl suspend` only when swaylock is still running | user |
 | `keep-awake-toggle.sh` | Toggle logind idle inhibitor — disables swayidle lock/suspend cascade while held | user |
+| `power-profile-cycle.sh` | Cycle power profile via the Power Profiles D-Bus API (tuned-ppd) | user |
 | `dnd-toggle.sh` | Toggle do-not-disturb (dunst paused) + push state to waybar | user |
 | `power-key.sh` | Enable/disable power-button → suspend (writes `/etc/systemd/logind.conf.d/power-key.conf`) | sudo |
 | `zram-optimize.sh` | zram = full RAM, zstd compression, swappiness 180 tuning | sudo |
