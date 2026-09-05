@@ -9,8 +9,7 @@
     "modules-left": [
         "sway/workspaces",
         "sway/mode",
-        "sway/scratchpad",
-        "power-profiles-daemon"
+        "sway/scratchpad"
     ],
     "modules-center": [
         "sway/window"
@@ -21,6 +20,7 @@
         "custom/audio",
         "custom/dnd",
         "custom/keep-awake",
+        "custom/power-profile",
         "network",
         "cpu",
         "memory",
@@ -162,17 +162,6 @@
     "battery#bat2": {
         "bat": "BAT2"
     },
-    "power-profiles-daemon": {
-        "format": "{icon}",
-        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-        "tooltip": true,
-        "format-icons": {
-            "default": "",
-            "performance": "",
-            "balanced": "",
-            "power-saver": ""
-        }
-    },
     "privacy": {
         "icon-size": 14,
         "format": "{icon}",
@@ -220,6 +209,15 @@
         "on-click": "$HOME/.config/sway/scripts/keep-awake-toggle.sh",
         "tooltip": true,
         "tooltip-format": "Keep awake — Super+Ctrl+L"
+    },
+    "custom/power-profile": {
+        "exec": "$HOME/.config/waybar/power-profile.sh",
+        // Push on cycle (SIGRTMIN+10); 30s poll as fallback if the profile changes externally
+        "signal": 10,
+        "interval": 30,
+        "return-type": "json",
+        "on-click": "$HOME/.config/sway/scripts/power-profile-cycle.sh",
+        "tooltip": true
     },
     "custom/media": {
         "format": "{icon} {text}",
