@@ -13,8 +13,25 @@ jobs:
 
       - name: Validate sway config (Fedora container)
         run: |
-          docker run --rm -v "$PWD":/repo:ro quay.io/fedora/fedora:latest \
-            bash -c "dnf install -y sway >/dev/null 2>&1 && sway --validate -c /repo/config/sway/config"
+          # --cap-add SYS_NICE: Fedora's sway ships with cap_sys_nice=ep file
+          # capabilities (for realtime scheduling); Docker's default bounding
+          # set excludes SYS_NICE, so execve fails with EPERM (exit 126).
+          # WLR_BACKENDS=headless + XDG_RUNTIME_DIR: sway --validate still
+          # initializes its backend, which needs a session in a container.
+          # Dummy wallpaper: the config's `set $wallpaper ~/.config/wallpaper`
+          # points to a file that only exists on the real system, not in CI.
+          docker run --rm --cap-add SYS_NICE \
+            -e XDG_RUNTIME_DIR=/tmp/sway-ci \
+            -e WLR_BACKENDS=headless \
+            -e WLR_LIBINPUT_NO_DEVICES=1 \
+            -v "$PWD":/repo:ro quay.io/fedora/fedora:latest \
+            bash -c "
+              dnf install -y sway >/dev/null 2>&1 &&
+              mkdir -p /tmp/sway-ci /root/.config &&
+              chmod 700 /tmp/sway-ci &&
+              printf '%s' 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==' | base64 -d > /root/.config/wallpaper &&
+              sway --validate -c /repo/config/sway/config
+            "
 
       - name: Validate waybar JSONC
         run: ./validate-waybar.sh
