@@ -148,8 +148,8 @@ button:hover {
     padding: 0;
 }
 
-/* Fixed 16x16 icon surfaces (glyph modules) with 4px horizontal padding.
- * #custom-audio is the live volume module (custom/audio); #pulseaudio is legacy. */
+/* Fixed 16x16 icon surfaces (glyph modules).
+ * #custom-audio-output / #custom-audio-input are the live audio modules; #pulseaudio is legacy. */
 #custom-dnd,
 #custom-keep-awake,
 #custom-power-profile,
