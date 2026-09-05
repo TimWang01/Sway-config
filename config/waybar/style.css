@@ -153,7 +153,8 @@ button:hover {
 #custom-dnd,
 #custom-keep-awake,
 #custom-power-profile,
-#custom-audio,
+#custom-audio-output,
+#custom-audio-input,
 #pulseaudio {
     min-width: 16px;
     min-height: 16px;

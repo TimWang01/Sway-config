@@ -17,7 +17,8 @@
     "modules-right": [
         "tray",
         // "custom/media",
-        "custom/audio",
+        "custom/audio-output",
+        "custom/audio-input",
         "custom/dnd",
         "custom/keep-awake",
         "custom/power-profile",
@@ -187,8 +188,13 @@
         "format-packet-loss": "",
         "on-click": "nm-connection-editor"
     },
-    "custom/audio": {
-        "exec": "$HOME/.config/waybar/audio.sh",
+    "custom/audio-output": {
+        "exec": "$HOME/.config/waybar/audio-output.sh",
+        "on-click": "pavucontrol",
+        "tooltip": false
+    },
+    "custom/audio-input": {
+        "exec": "$HOME/.config/waybar/audio-input.sh",
         "on-click": "pavucontrol",
         "tooltip": false
     },
