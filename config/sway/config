@@ -96,6 +96,9 @@ output $primary_output allow_tearing yes
     # Toggle keep-awake (logind idle inhibitor — disables swayidle lock/suspend cascade)
     bindsym --locked $mod+Ctrl+l exec $scripts/keep-awake-toggle.sh
 
+    # Cycle power profile (power-saver → balanced → performance)
+    bindsym $mod+Ctrl+p exec $scripts/power-profile-cycle.sh
+
     # Kill focused window
     bindsym $mod+q kill
 
