@@ -135,13 +135,13 @@ following need extra installs:
 
 **Layered packages**:
 
-```sh
-rpm-ostree install power-profiles-daemon
-```
-
-- `power-profiles-daemon` backs the waybar power-profiles module.
 - `btop` (system monitor) is optional and not in the base image — install it
   however you prefer (`rpm-ostree install btop`, brew, etc.).
+
+> Power profiles need no install: Sericea ships `tuned-ppd` (enabled by
+> default), which exposes the same `net.hadess.PowerProfiles` D-Bus API the
+> waybar power-profiles module talks to. Do **not** layer
+> `power-profiles-daemon` — it conflicts with tuned-ppd.
 
 **swayosd** (OSD for volume/brightness) — not in Fedora repos; install via the
 repo's script:
