@@ -6,6 +6,13 @@ Hand-edited configuration for a [Sway](https://swaywm.org/) desktop on
 **Fedora Sway Atomic (Sericea)** — a quiet, keyboard-driven Wayland setup with
 a Nord palette, tabbed workspaces, and a "no news is good news" philosophy.
 
+## Why?
+
+Most rices throw all the eye candy and noise into the workspace. This one
+doesn't: the goal is a boring workspace that fits like a glove and shuts
+itself up most of the time. It only speaks up when something actually needs
+attention — like when the system is about to run into OOM.
+
 ## Features
 
 - **Tabbed workspaces** — `workspace_layout tabbed` with centered titles and
