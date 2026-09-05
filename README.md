@@ -153,6 +153,11 @@ repo's script:
 bash install-swayosd.sh
 ```
 
+**Papirus icon theme** — the GTK icon theme (`gtk-icon-theme-name=Papirus` in
+`~/.config/gtk-{3,4}.0/settings.ini`). Not in the base image; install
+user-locally from the [Papirus GitHub repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
+(`./install.sh`) or layer the `papirus-icon-theme` rpm.
+
 **Flatpak apps** (launched by keybindings):
 
 ```sh
