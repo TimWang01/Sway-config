@@ -199,7 +199,7 @@
         "interval": 30,
         "on-click": "$HOME/.config/sway/scripts/dnd-toggle.sh",
         "tooltip": true,
-        "tooltip-format": "Do not disturb — Super+Ctrl+N"
+        "tooltip-format": "Do not disturb"
     },
     "custom/keep-awake": {
         "exec": "$HOME/.config/waybar/keep-awake.sh",
@@ -208,7 +208,7 @@
         "interval": 30,
         "on-click": "$HOME/.config/sway/scripts/keep-awake-toggle.sh",
         "tooltip": true,
-        "tooltip-format": "Keep awake — Super+Ctrl+L"
+        "tooltip-format": "Keep awake"
     },
     "custom/power-profile": {
         "exec": "$HOME/.config/waybar/power-profile.sh",
