@@ -121,10 +121,54 @@ locked.
 | `Ctrl+Print` | Area → clipboard |
 | `Ctrl+Shift+Print` | Area → file |
 
+## Prerequisites
+
+Everything below is installed once per system; nothing here is bundled in the
+repo. On Fedora Sway Atomic (Sericea) the system packages are layered with
+`rpm-ostree install` (reboot to activate), and the apps come from Flathub.
+
+**Layered packages** (core desktop):
+
+```sh
+rpm-ostree install sway swayidle swaylock waybar foot dunst grim rofi \
+    wlsunset btop pavucontrol playerctl jq psmisc procps-ng \
+    power-profiles-daemon
+```
+
+- `sway` also provides `swaynag`; `grim` provides `grimshot` (screenshots).
+- `psmisc` provides `fuser` (webcam indicator), `procps-ng` provides
+  `pgrep`/`pkill` (notification restart, swayidle).
+- `power-profiles-daemon` backs the waybar power-profiles module.
+- `pipewire-pulse` (usually preinstalled) provides `pactl` for the audio
+  module.
+
+**swayosd** (OSD for volume/brightness) — not in Fedora repos; install via the
+repo's script:
+
+```sh
+bash install-swayosd.sh
+```
+
+**Flatpak apps** (launched by keybindings):
+
+```sh
+flatpak install flathub org.kde.kcalc org.keepassxc.KeePassXC \
+    org.mozilla.firefox org.kde.dolphin
+```
+
+- `org.kde.kcalc` is the calculator, `org.keepassxc.KeePassXC` the password
+  manager, `org.kde.dolphin` the file manager (falls back to `thunar` if
+  absent).
+- `korganizer` (calendar) is optional — install the `korganizer` rpm or the
+  `org.kde.korganizer` flatpak if you use the calendar binding.
+
+**Optional**: the waybar media module (`mediaplayer.py`, currently commented
+out) needs `python3-gi`, `python3-gi-cairo`, and `python3-dbus`.
+
 ## Installation
 
 1. Install Fedora Sway Atomic (Sericea), then `rpm-ostree install` the layered
-   packages you rely on (foot, waybar, swaylock, dunst, swayosd, etc.).
+   packages listed under [Prerequisites](#prerequisites).
 2. `bash install-swayosd.sh` (after the `rpm-ostree` reboot).
 3. Symlink the config dirs into `~/.config/` so live configs stay inside the
    repo (run from the repo root):
