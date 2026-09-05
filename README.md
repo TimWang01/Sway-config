@@ -216,9 +216,8 @@ image).
 5. Re-login (or `swaymsg reload`) — Sway loads `~/.config/sway/config` and its
    `config.d/` fragments.
 
-> **Tested on:** Ryzen 5950X, 14 Gi RAM, AMD RX 6600 (RDNA2), 2560x1440@144 Hz
-> on DP-2. The config assumes a single output named `DP-2` — adjust the
-> `output` lines in `config/sway/config` for your hardware.
+> **Note:** The config assumes a single output named `DP-2` — adjust the
+> `output` lines in `config/sway/config` for your display.
 
 ## Design principles
 
