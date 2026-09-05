@@ -17,9 +17,12 @@ attention — like when the system is about to run into OOM.
 
 ![Hero view](res/hero%20view.png)
 
-- [Usage in action](res/usage%20in%20action.mp4) — a walkthrough of the desktop
-- [Appearance of actionable icons](res/appearance%20of%20actionable%20icons.mp4) — how icons show up when relevant
-- [Tray icons on hover](res/tray%20icons%20are%20shown%20on%20hover.mp4) — tray icons revealed on hover
+- **Usage in action** — a walkthrough of the desktop:
+  ![Usage in action](res/usage%20in%20action.gif)
+- **Appearance of actionable icons** — how icons show up when relevant:
+  ![Appearance of actionable icons](res/appearance%20of%20actionable%20icons.gif)
+- **Tray icons on hover** — tray icons revealed on hover:
+  ![Tray icons on hover](res/tray%20icons%20are%20shown%20on%20hover.gif)
 
 ## Features
 
