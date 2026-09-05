@@ -48,4 +48,4 @@ A state toggle has three parts:
 | dnd | 9 | `dnd-toggle.sh` |
 | power-profile | 10 | `power-profile-cycle.sh` |
 
-Pick the next free number (10+) for a new module.
+Pick the next free number (11+) for a new module.

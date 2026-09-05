@@ -16,7 +16,7 @@ a Nord palette, tabbed workspaces, and a "no news is good news" philosophy.
 - **Keep-awake toggle** — `$mod+Ctrl+l` holds a logind idle inhibitor so the
   lock/suspend cascade stays off until toggled again (works while locked)
 - **Power profile cycle** — `$mod+Ctrl+p` cycles power-saver → balanced →
-  performance; the waybar indicator shows only when not balanced
+  performance → power-saver; the waybar indicator shows only when not balanced
 - **Quiet by default** — no notifications, icons, or banners for routine
   events; indicators only appear when a state is worth knowing about
 - **Event-driven waybar** — audio and DND modules react to `pactl subscribe`

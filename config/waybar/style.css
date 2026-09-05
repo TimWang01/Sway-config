@@ -133,18 +133,18 @@ button:hover {
 #custom-media,
 #custom-dnd,
 #custom-keep-awake,
+#custom-power-profile,
 #custom-webcam,
 #tray,
 #mode,
 #scratchpad,
-#power-profiles-daemon,
 #mpd {
     color: @fg;
 }
 
 #tray, #battery, #cpu, #memory, #disk, #temperature, #backlight,
 #network, #pulseaudio, #wireplumber, #custom-media, #custom-dnd, #custom-keep-awake, #custom-webcam,
-#mode, #scratchpad, #power-profiles-daemon, #mpd {
+#mode, #scratchpad, #mpd {
     padding: 0;
 }
 
@@ -194,16 +194,6 @@ button:hover {
     animation-timing-function: steps(12);
     animation-iteration-count: infinite;
     animation-direction: alternate;
-}
-
-#power-profiles-daemon.balanced {
-    opacity: 0.25;
-    color: @bg;
-}
-
-#power-profiles-daemon:hover {
-    opacity: 1.0;
-    color: @fg;
 }
 
 label:focus {
