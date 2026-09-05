@@ -157,7 +157,7 @@ button:hover {
 #pulseaudio {
     min-width: 16px;
     min-height: 16px;
-    padding: 0 4px;
+    padding: 0 2px;
 }
 
 #window,
@@ -298,7 +298,7 @@ label:focus {
 }
 
 #tray > widget > image {
-    padding: 0 4px;
+    padding: 0 2px;
     min-width: 16px;
     min-height: 16px;
 }
