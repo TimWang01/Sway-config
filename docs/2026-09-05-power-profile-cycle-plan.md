@@ -1,6 +1,6 @@
 # Power Profile Cycle Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** Implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Add `$mod+Ctrl+p` to cycle the system power profile (power-saver → balanced → performance) and show the active profile in waybar only when it is not balanced.
 
