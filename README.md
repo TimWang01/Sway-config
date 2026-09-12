@@ -72,6 +72,7 @@ locked.
 |---|---|
 | `$mod+q` | Kill focused window |
 | `$mod+Shift+q` | Force-kill focused window (SIGKILL) |
+| `$mod+Alt+q` | Suspend/resume focused window (SIGSTOP/SIGCONT toggle) |
 | `$mod+w/a/s/d` | Focus up / left / down / right |
 | `$mod+←/↓/↑/→` | Focus (arrow keys) |
 | `$mod+Shift+w/a/s/d` | Move window up / left / down / right |
@@ -248,6 +249,7 @@ image).
 | `night-light-toggle.sh` | Toggle wlsunset night light | user |
 | `dolphin-wrapper.sh` | Launches Dolphin with forced dark-theme env | user |
 | `force-kill.sh` | Emergency kill helper | user |
+| `suspend-focused.sh` | Toggle freeze of focused window's process (SIGSTOP/SIGCONT) | user |
 
 `install-swayosd.sh` (repo root) bootstraps the swayosd COPR repo and installs
 the package — needed on a fresh install before the `exec swayosd-server` line

@@ -42,7 +42,7 @@ set $swayosd swayosd-client
 # --- Display ---
 # Primary output name (see: swaymsg -t get_outputs) and its mode
 set $primary_output DP-2
-set $primary_res 2560x1440@144Hz
+set $primary_res 2560x1440@170Hz
 
 # --- Appearance ---
 set $font pango:Century Gothic Bold 10
@@ -104,6 +104,9 @@ output $primary_output allow_tearing yes
 
     # Force-kill focused window (SIGKILL, no save prompts)
     bindsym $mod+Shift+q exec $scripts/force-kill.sh
+
+    # Suspend/resume focused window (SIGSTOP/SIGCONT toggle)
+    bindsym $mod+Alt+q exec $scripts/suspend-focused.sh
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
