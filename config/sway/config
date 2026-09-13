@@ -25,7 +25,7 @@ set $term foot
 # on the original workspace that the command was run on.
 set $rofi_cmd rofi \
         -terminal '$term'
-set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
+set $menu $rofi_cmd -show combi -combi-modes drun#run#window -modes combi
 set $browser firefox
 set $file-manager pcmanfm-qt
 set $calc flatpak run org.kde.kcalc

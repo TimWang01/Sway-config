@@ -112,7 +112,7 @@ locked.
 
 | Keys | Action |
 |---|---|
-| `$mod+r` | Application launcher (rofi) |
+| `$mod+r` | Launcher (rofi: apps, commands, open windows) |
 | `$mod+b` | Browser (Firefox) |
 | `$mod+c` | Calculator (KCalc) |
 | `$mod+Alt+c` | Calendar (KOrganizer) |
