@@ -22,6 +22,7 @@
         "custom/dnd",
         "custom/keep-awake",
         "custom/power-profile",
+        "custom/frozen",
         "network",
         "cpu",
         "memory",
@@ -224,6 +225,16 @@
         "return-type": "json",
         "on-click": "$HOME/.config/sway/scripts/power-profile-cycle.sh",
         "tooltip": true
+    },
+    "custom/frozen": {
+        "exec": "$HOME/.config/waybar/frozen.sh",
+        // Push on toggle (SIGRTMIN+11); 5s poll as self-heal because focus
+        // changes (moving off/on a frozen window) can't push
+        "signal": 11,
+        "interval": 5,
+        "on-click": "$HOME/.config/sway/scripts/suspend-focused.sh",
+        "tooltip": true,
+        "tooltip-format": "Frozen — Super+Alt+q to resume"
     },
     "custom/media": {
         "format": "{icon} {text}",

@@ -28,3 +28,6 @@ for marker in "$STATE_DIR"/*; do
     stale_pid=$(basename "$marker")
     kill -0 "$stale_pid" 2>/dev/null || rm -f "$marker"
 done
+
+# Push new state to the waybar frozen indicator (SIGRTMIN+11 → custom/frozen)
+pkill -RTMIN+11 waybar 2>/dev/null || true
