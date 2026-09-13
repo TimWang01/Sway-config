@@ -3,45 +3,41 @@
  * (GTK3 does not support CSS `var(--x)`; @define-color is the native mechanism.)
  *
  * Imported at the top of style.css.
- *
- * Theme: dark bar tuned to the current wallpaper — indigo/navy tones from
- * the sailor collar, with violet/rose/gold accents from the flowers and
- * petals. Stays dark; only the hues harmonize with the image.
  */
 
 /* Neutrals */
-@define-color fg             #f2ecf8;  /* pale ivory-lavender text */
-@define-color bg             #1e2440;  /* deep indigo — bottom of image */
-@define-color hover-bg       rgba(242, 236, 248, 0.12);
-@define-color border         rgba(122, 108, 165, 0.0);
-@define-color termite-bg     #272d4d;  /* navy — sailor collar */
+@define-color fg             #d8dee9;  /* nord4 */
+@define-color bg             #2e3440;  /* nord0 */
+@define-color hover-bg       rgba(46, 52, 64, 0.3);
+@define-color border         rgba(76, 86, 106, 0.0);  /* nord3 */
+@define-color termite-bg     #3b4252;  /* nord1 */
 
-/* Waybar background gradient (dark indigo, opaque top -> transparent bottom) */
-@define-color gradient-top   rgba(30, 36, 64, 0.95);
-@define-color gradient-mid   rgba(30, 36, 64, 0.5);
-@define-color gradient-bottom rgba(30, 36, 64, 0);
+/* Waybar background gradient (opaque top -> transparent bottom) */
+@define-color gradient-top   rgba(46, 52, 64, 0.95);
+@define-color gradient-mid   rgba(46, 52, 64, 0.5);
+@define-color gradient-bottom rgba(46, 52, 64, 0);
 
 /* Status colors */
-@define-color active-bg      #4a3f78;  /* deep violet — hair/petals */
-@define-color urgent         #c9537f;  /* alarming deep rose */
-@define-color critical       #c9537f;  /* alarming deep rose */
-@define-color charging       #a5822f;  /* dark gold — floral accents */
-@define-color disk           #9e5a68;  /* dusty rose */
-@define-color backlight      #4f5aa8;  /* indigo-periwinkle — blue petals */
-@define-color temperature    #8f5aa0;  /* violet */
-@define-color vlc            #d4b45c;  /* gold (navy text on top) */
+@define-color active-bg      #4c566a;  /* nord3 */
+@define-color urgent         #bf616a;  /* nord11 */
+@define-color critical       #bf616a;  /* nord11 */
+@define-color charging       #a3be8c;  /* nord14 */
+@define-color disk           #d08770;  /* nord12 */
+@define-color backlight      #8fbcbb;  /* nord7 */
+@define-color temperature    #d08770;  /* nord12 */
+@define-color vlc            #ebcb8b;  /* nord13 */
 
 /* Media / MPD */
-@define-color media-bg       #a795d0;  /* mid lavender */
-@define-color media-fg       #1e2440;  /* deep indigo */
-@define-color mpd-paused     #cfc6ea;  /* pale lavender */
+@define-color media-bg       #a3be8c;  /* nord14 */
+@define-color media-fg       #2e3440;  /* nord0 */
+@define-color mpd-paused     #8fbcbb;  /* nord7 */
 
 /* Input modules */
-@define-color language-bg    #6a5aa8;  /* violet */
-@define-color language-fg    #ece6f8;  /* pale lavender text */
-@define-color keyboard-bg    #cfc6ea;  /* light violet (navy text on top) */
+@define-color language-bg    #8fbcbb;  /* nord7 */
+@define-color language-fg    #b48ead;  /* nord15 */
+@define-color keyboard-bg    #a3be8c;  /* nord14 */
 
 /* Misc */
-@define-color wireplumber-bg #dcd6ee;  /* pale lavender (navy text on top) */
-@define-color privacy-bg     #a8436b;  /* deep rose */
-@define-color privacy-fg     #f5eef5;  /* pale lavender-white */
+@define-color wireplumber-bg #e5e9f0;  /* nord5 */
+@define-color privacy-bg     #a3be8c;  /* nord14 */
+@define-color privacy-fg     #2e3440;  /* nord0 */
