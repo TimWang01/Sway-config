@@ -50,17 +50,8 @@ set $border_width 4
 set $resize_step 10px
 set $workspace_layout tabbed
 
-# --- Nord palette (titlebar colors) ---
-set $nord0 #2E3440
-set $nord1 #3B4252
-set $nord3 #4C566A
-set $nord4 #D8DEE9
-set $nord6 #ECEFF4
-set $nord8 #88C0D0
-set $nord11 #BF616A
-# Custom dimmed/deep variants for inactive/unfocused states
-set $nord-dim #353C4A
-set $nord-deep #1F2329
+# --- Palette (titlebar/border colors; defined in palette.conf) ---
+include palette.conf
 
 # --- Input ---
 set $pointer_accel 0
@@ -324,12 +315,12 @@ titlebar_padding 5 4
 titlebar_border_thickness 1
 # Center the title text in the title bar / tabs
 title_align center
-# Nord titlebar colors (client.<class> border background text indicator child_border)
-client.focused          $nord3 $nord1 $nord4 $nord8 $nord3
-client.focused_inactive $nord-dim $nord-dim $nord4 $nord8 $nord-dim
-client.unfocused        $nord-deep $nord0 $nord4 $nord3 $nord-deep
-client.urgent           $nord11 $nord11 $nord6 $nord11 $nord11
-client.placeholder      $nord1 $nord1 $nord4 $nord3 $nord1
+# Titlebar colors (client.<class> border background text indicator child_border; palette in palette.conf)
+client.focused          $pal-focus-border $pal-bg $pal-text $pal-accent $pal-focus-border
+client.focused_inactive $pal-dim $pal-dim $pal-text $pal-accent $pal-dim
+client.unfocused        $pal-deep $pal-border-bg $pal-text $pal-dim $pal-deep
+client.urgent           $pal-urgent $pal-urgent $pal-text-bright $pal-urgent $pal-urgent
+client.placeholder      $pal-bg $pal-bg $pal-text $pal-dim $pal-bg
 # i3-compatible: hide the tab/stack title bar when a container has only one child
 hide_edge_borders --i3 none
 
