@@ -115,7 +115,7 @@ locked.
 | `$mod+r` | Launcher (rofi: apps, commands, open windows) |
 | `$mod+b` | Browser (Firefox) |
 | `$mod+c` | Calculator (KCalc) |
-| `$mod+Alt+c` | Calendar (KOrganizer) |
+| `$mod+Alt+c` | Calendar (Kontact/KOrganizer, flatpak) |
 | `$mod+e` | File manager (pcmanfm-qt) |
 | `$mod+Alt+\` | KeePassXC |
 | `$mod+End` | Toggle night light (wlsunset) |
@@ -190,9 +190,8 @@ flatpak install flathub org.kde.kcalc org.keepassxc.KeePassXC
 
 - `org.kde.kcalc` is the calculator, `org.keepassxc.KeePassXC` the password
   manager.
-- The calendar (`korganizer`) and file manager (`pcmanfm-qt`) are layered rpms
-  on this setup; the flatpak equivalent for the calendar (`org.kde.korganizer`)
-  works too.
+- The file manager (`pcmanfm-qt`) is a layered rpm on this setup; the calendar
+  is the flatpak `org.kde.kontact` (Kontact suite, includes KOrganizer).
 
 **Optional**: the waybar media module (`mediaplayer.py`, currently commented
 out) needs `python3-gi` and `python3-gi-cairo` (`python3-dbus` is in the base

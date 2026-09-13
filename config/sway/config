@@ -29,7 +29,7 @@ set $menu $rofi_cmd -show combi -combi-modes window#drun#run -modes combi
 set $browser firefox
 set $file-manager pcmanfm-qt
 set $calc flatpak run org.kde.kcalc
-set $calendar korganizer
+set $calendar flatpak run org.kde.kontact
 set $password-manager flatpak run org.keepassxc.KeePassXC
 set $mixer pavucontrol
 
