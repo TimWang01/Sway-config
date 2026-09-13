@@ -36,7 +36,8 @@ attention — like when the system is about to run into OOM.
 - **Power profile cycle** — `$mod+Ctrl+p` cycles power-saver → balanced →
   performance → power-saver; the waybar indicator shows only when not balanced
 - **Suspend/resume focused window** — `$mod+Alt+q` freezes (SIGSTOP) or
-  resumes (SIGCONT) the focused app; waybar shows a pause icon before the
+  resumes (SIGCONT) the focused app and its whole child-process tree
+  (covers wine/proton games); waybar shows a pause icon before the
   window title while the focused window is frozen (fully push-based via a
   sway event bridge)
 - **Quiet by default** — no notifications, icons, or banners for routine
@@ -76,7 +77,7 @@ locked.
 |---|---|
 | `$mod+q` | Kill focused window |
 | `$mod+Shift+q` | Force-kill focused window (SIGKILL) |
-| `$mod+Alt+q` | Suspend/resume focused window (SIGSTOP/SIGCONT toggle) |
+| `$mod+Alt+q` | Suspend/resume focused window (SIGSTOP/SIGCONT, whole process subtree) |
 | `$mod+w/a/s/d` | Focus up / left / down / right |
 | `$mod+←/↓/↑/→` | Focus (arrow keys) |
 | `$mod+Shift+w/a/s/d` | Move window up / left / down / right |
@@ -251,7 +252,7 @@ image).
 | `zram-optimize.sh` | zram = full RAM, zstd compression, swappiness 180 tuning | sudo |
 | `night-light-toggle.sh` | Toggle wlsunset night light | user |
 | `force-kill.sh` | Emergency kill helper | user |
-| `suspend-focused.sh` | Toggle freeze of focused window's process (SIGSTOP/SIGCONT) + push waybar indicator | user |
+| `suspend-focused.sh` | Toggle freeze of focused window's process subtree (SIGSTOP/SIGCONT) + push waybar indicator | user |
 
 `install-swayosd.sh` (repo root) bootstraps the swayosd COPR repo and installs
 the package — needed on a fresh install before the `exec swayosd-server` line
