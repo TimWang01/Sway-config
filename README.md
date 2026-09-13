@@ -116,7 +116,7 @@ locked.
 | `$mod+b` | Browser (Firefox) |
 | `$mod+c` | Calculator (KCalc) |
 | `$mod+Alt+c` | Calendar (KOrganizer) |
-| `$mod+e` | File manager (Dolphin) |
+| `$mod+e` | File manager (pcmanfm-qt) |
 | `$mod+Alt+\` | KeePassXC |
 | `$mod+End` | Toggle night light (wlsunset) |
 | `$mod+Alt+a` | Audio mixer (pavucontrol) |
@@ -190,9 +190,9 @@ flatpak install flathub org.kde.kcalc org.keepassxc.KeePassXC
 
 - `org.kde.kcalc` is the calculator, `org.keepassxc.KeePassXC` the password
   manager.
-- The file manager (`dolphin`) and calendar (`korganizer`) are layered rpms on
-  this setup; the flatpak equivalents (`org.kde.dolphin`,
-  `org.kde.korganizer`) work too.
+- The calendar (`korganizer`) and file manager (`pcmanfm-qt`) are layered rpms
+  on this setup; the flatpak equivalent for the calendar (`org.kde.korganizer`)
+  works too.
 
 **Optional**: the waybar media module (`mediaplayer.py`, currently commented
 out) needs `python3-gi` and `python3-gi-cairo` (`python3-dbus` is in the base
@@ -247,7 +247,6 @@ image).
 | `power-key.sh` | Enable/disable power-button → suspend (writes `/etc/systemd/logind.conf.d/power-key.conf`) | sudo |
 | `zram-optimize.sh` | zram = full RAM, zstd compression, swappiness 180 tuning | sudo |
 | `night-light-toggle.sh` | Toggle wlsunset night light | user |
-| `dolphin-wrapper.sh` | Launches Dolphin with forced dark-theme env | user |
 | `force-kill.sh` | Emergency kill helper | user |
 | `suspend-focused.sh` | Toggle freeze of focused window's process (SIGSTOP/SIGCONT) | user |
 
