@@ -1,7 +1,8 @@
 # Calendar replacement research (KOrganizer → light frontend)
 
 - **Date:** 2026-09-13
-- **Status:** Research-only; decision pending. No implementation committed.
+- **Status:** Closed. Decision (2026-09-13): keep flatpak Kontact as the
+  calendar; host korganizer rpm uninstalled. GNOME Calendar / khal not pursued.
 
 ## Symptom / question
 
@@ -45,20 +46,28 @@ events), partial transfers can be read mid-sync. Recommended patterns:
 3. Live-tree sync only with single writer + Radicale stopped during sync.
 
 ## Decision state
-- User's reminders fire on their phone → desktop only needs view/edit.
-- Lean path: uninstall korganizer (reclaims ~700 MB layered packages via
-  rpm-ostree orphan removal, kills Akonadi permanently); replacement
-  undecided between GNOME Calendar (chosen direction as of this session:
-  mature, light, events-only acceptable) and khal (zero-daemon TUI).
-- `$mod+Alt+c` now launches flatpak `org.kde.kontact` (commit d9869bf) —
-  interim step; sandboxed Kontact still runs its own bundled Akonadi
-  inside the flatpak sandbox but cannot touch host env vars.
-- GNOME Calendar setup prerequisites (if chosen): `rpm-ostree install
-  evolution-data-server` → reboot → flatpak install → Radicale account
-  with full principal URL incl. username (`https://host:5232/<user>/`) →
-  `gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'`.
-- Optional desktop reminders: `exec /usr/libexec/evolution-data-server/evolution-alarm-notify`
-  in sway config (EDS factories are D-Bus-activatable; no dex needed).
+- **Final decision (2026-09-13): compromise on flatpak Kontact.** The
+  `$mod+Alt+c` keybind (commit d9869bf) launches flatpak
+  `org.kde.kontact` (6.6.3) and that is now the permanent setup. The host
+  korganizer rpm was uninstalled (confirmed gone after the 2026-09-13
+  reboot, alongside the queued dolphin uninstall); the host Akonadi
+  stack (10 daemons, mysqld, ~700 MB) is gone. Kontact still runs its
+  own bundled Akonadi *inside the flatpak sandbox* — contained, no host
+  env pollution, no host MySQL.
+- GNOME Calendar and khal were not pursued; the research above remains
+  valid as fallbacks if the flatpak Kontact trade-off stops being
+  acceptable.
+- **Correction to the symptom section:** the persistent
+  `KDE_SESSION_VERSION`/`KDE_FULL_SESSION`/`XDG_CURRENT_DESKTOP` vars
+  were *not* (only) injected by the Akonadi stack — the durable source
+  is `~/.config/environment.d/kde-apps.conf` ("Help KDE applications
+  pick up dark color scheme from kdeglobals"), which re-applies them at
+  every login. After the reboot that removed both rpms, the vars were
+  present again within seconds of `systemctl --user unset-environment`.
+  With dolphin uninstalled, the Firefox "Open Containing Folder"→Dolphin
+  misroute is moot (the target binary no longer exists); the vars'
+  remaining effect is KDE/Qt dark theming. Disposition of that env file
+  is tracked separately.
 
 ## Caveats
 - EDS↔Radicale has the most historical edge cases of any client; keep both
