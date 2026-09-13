@@ -36,8 +36,9 @@ attention — like when the system is about to run into OOM.
 - **Power profile cycle** — `$mod+Ctrl+p` cycles power-saver → balanced →
   performance → power-saver; the waybar indicator shows only when not balanced
 - **Suspend/resume focused window** — `$mod+Alt+q` freezes (SIGSTOP) or
-  resumes (SIGCONT) the focused app; waybar shows a pause icon while the
-  focused window is frozen
+  resumes (SIGCONT) the focused app; waybar shows a pause icon before the
+  window title while the focused window is frozen (fully push-based via a
+  sway event bridge)
 - **Quiet by default** — no notifications, icons, or banners for routine
   events; indicators only appear when a state is worth knowing about
 - **Event-driven waybar** — audio and DND modules react to `pactl subscribe`

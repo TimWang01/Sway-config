@@ -49,4 +49,9 @@ A state toggle has three parts:
 | power-profile | 10 | `power-profile-cycle.sh` |
 | frozen | 11 | `suspend-focused.sh` |
 
+Note: the `frozen` module is fully push-based — besides the toggle script, the
+`frozen-watch.sh` daemon (started via `exec_always` in the sway config)
+pushes the same signal on sway window focus/close events, so the module has
+no poll interval.
+
 Pick the next free number (11+) for a new module.

@@ -305,6 +305,8 @@ input * {
 exec $scripts/night-light-toggle.sh
 exec swayosd-server
 exec_always fcitx5 -d --replace
+# Push bridge for the waybar frozen indicator (window focus/close → SIGRTMIN+11)
+exec_always ~/.config/waybar/frozen-watch.sh
 
 ### Behavior
 focus_follows_mouse no

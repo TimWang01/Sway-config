@@ -228,10 +228,9 @@
     },
     "custom/frozen": {
         "exec": "$HOME/.config/waybar/frozen.sh",
-        // Push on toggle (SIGRTMIN+11); 5s poll as self-heal because focus
-        // changes (moving off/on a frozen window) can't push
+        // Fully push-based: toggle script (SIGRTMIN+11 on freeze/resume) and
+        // frozen-watch.sh (SIGRTMIN+11 on sway focus/close events). No poll.
         "signal": 11,
-        "interval": 5,
         "on-click": "$HOME/.config/sway/scripts/suspend-focused.sh",
         "tooltip": true,
         "tooltip-format": "Frozen — Super+Alt+q to resume"
