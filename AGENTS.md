@@ -23,6 +23,44 @@ file directly, and changes apply to the running desktop immediately (after a
   git add config/sway/config && git commit -m "sway: <what changed>"
   ```
 
+## Local-only custom palette (skip-worktree)
+
+The user's desktop uses a custom wallpaper palette (waybar, dunst, swayosd)
+while the public branch stays Nord. The custom versions are kept local via
+git's skip-worktree bit on four files:
+
+- `README.md`
+- `config/dunst/dunstrc`
+- `config/swayosd/style.css`
+- `config/waybar/palette.css`
+
+Consequences and rules:
+
+- `git status` shows these as clean even though the working-tree content
+  differs from HEAD. That is intentional; do not "fix" it.
+- Never `git update-index --no-skip-worktree` on them except for the merge
+  procedure below.
+- Current commit prefixes stay valid, but add `docs:` for doc-only edits.
+- Backup copies live in `local-overrides-backup/` (untracked, listed in
+  `.git/info/exclude`). If a working-tree file is ever lost or clobbered,
+  restore with `cp local-overrides-backup/<name> <path>` (README.md maps to
+  `README.md`, others to their `config/` locations), then re-apply
+  skip-worktree if it was unset.
+- Refresh the backups after any intentional edit to one of these four files.
+
+If a future branch/checkout/rebase refuses because one of these files would
+be overwritten, or the upstream file changed and must be picked up:
+
+```sh
+git update-index --no-skip-worktree <file>
+# merge upstream changes into the working-tree version (desktop palette wins)
+git update-index --skip-worktree <file>
+cp <file> local-overrides-backup/<name>
+```
+
+Confirm flags with `git ls-files -v | grep ^S` (expect exactly the four
+files above).
+
 ## Validating configs
 
 - Sway: `sway --validate -c config/sway/config`
