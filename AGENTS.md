@@ -25,12 +25,13 @@ file directly, and changes apply to the running desktop immediately (after a
 
 ## Local-only custom palette (skip-worktree)
 
-The user's desktop uses a custom wallpaper palette (waybar, dunst, swayosd)
-while the public branch stays Nord. The custom versions are kept local via
-git's skip-worktree bit on four files:
+The user's desktop uses a custom wallpaper palette (waybar, dunst, swayosd,
+sway titlebar chrome) while the public branch stays Nord. The custom versions
+are kept local via git's skip-worktree bit on five files:
 
 - `README.md`
 - `config/dunst/dunstrc`
+- `config/sway/palette.conf`
 - `config/swayosd/style.css`
 - `config/waybar/palette.css`
 
@@ -46,7 +47,7 @@ Consequences and rules:
   restore with `cp local-overrides-backup/<name> <path>` (README.md maps to
   `README.md`, others to their `config/` locations), then re-apply
   skip-worktree if it was unset.
-- Refresh the backups after any intentional edit to one of these four files.
+- Refresh the backups after any intentional edit to one of these five files.
 
 If a future branch/checkout/rebase refuses because one of these files would
 be overwritten, or the upstream file changed and must be picked up:
@@ -58,7 +59,7 @@ git update-index --skip-worktree <file>
 cp <file> local-overrides-backup/<name>
 ```
 
-Confirm flags with `git ls-files -v | grep ^S` (expect exactly the four
+Confirm flags with `git ls-files -v | grep ^S` (expect exactly the five
 files above).
 
 ## Validating configs
