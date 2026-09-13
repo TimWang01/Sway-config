@@ -11,9 +11,9 @@
 @define-color termite-bg     #3b4252;  /* nord1 */
 
 /* Waybar background gradient (opaque top -> transparent bottom) */
-@define-color gradient-top   rgba(0, 0, 0, 0.95);
-@define-color gradient-mid   rgba(0, 0, 0, 0.5);
-@define-color gradient-bottom rgba(0, 0, 0, 0);
+@define-color gradient-top   rgba(46, 52, 64, 0.95);
+@define-color gradient-mid   rgba(46, 52, 64, 0.5);
+@define-color gradient-bottom rgba(46, 52, 64, 0);
 
 /* Status colors */
 @define-color active-bg      #4c566a;  /* nord3 */
