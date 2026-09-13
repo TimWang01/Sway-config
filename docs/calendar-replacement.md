@@ -66,8 +66,20 @@ events), partial transfers can be read mid-sync. Recommended patterns:
   present again within seconds of `systemctl --user unset-environment`.
   With dolphin uninstalled, the Firefox "Open Containing Folder"→Dolphin
   misroute is moot (the target binary no longer exists); the vars'
-  remaining effect is KDE/Qt dark theming. Disposition of that env file
-  is tracked separately.
+  remaining effect is KDE/Qt dark theming.
+- **Disposition of the env file (2026-09-13): deleted.** User chose
+  removal of `~/.config/environment.d/kde-apps.conf`. Verified clean
+  after deletion: user/system environment generators emit no KDE vars,
+  no PAM/profile/greetd/sway/unit-file source remains, no host PIM rpms
+  or stale D-Bus service files. The vars persist in the *current* boot's
+  systemd user manager (unset-environment succeeds but the vars remain;
+  a fresh manager after reboot is expected to start without them — if
+  they reappear post-reboot, a boot-time service is re-injecting and
+  needs further tracing). Post-reboot checks: manager env free of KDE
+  vars; flatpak Kontact dark theme (may revert to light — fallback:
+  `flatpak override --user org.kde.kontact --env=KDE_SESSION_VERSION=6`
+  to scope the vars to the app only); Firefox "Open Containing Folder"
+  opens pcmanfm-qt.
 
 ## Caveats
 - EDS↔Radicale has the most historical edge cases of any client; keep both
