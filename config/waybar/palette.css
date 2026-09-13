@@ -1,0 +1,43 @@
+/* ===== Palette (GTK @define-color variables) =====
+ * Colors are defined once here; change a value to re-theme everywhere.
+ * (GTK3 does not support CSS `var(--x)`; @define-color is the native mechanism.)
+ *
+ * Imported at the top of style.css.
+ */
+
+/* Neutrals */
+@define-color fg             #d8dee9;  /* nord4 */
+@define-color bg             #2e3440;  /* nord0 */
+@define-color hover-bg       rgba(46, 52, 64, 0.3);
+@define-color border         rgba(76, 86, 106, 0.0);  /* nord3 */
+@define-color termite-bg     #3b4252;  /* nord1 */
+
+/* Waybar background gradient (opaque top -> transparent bottom) */
+@define-color gradient-top   rgba(46, 52, 64, 0.95);
+@define-color gradient-mid   rgba(46, 52, 64, 0.5);
+@define-color gradient-bottom rgba(46, 52, 64, 0);
+
+/* Status colors */
+@define-color active-bg      #4c566a;  /* nord3 */
+@define-color urgent         #bf616a;  /* nord11 */
+@define-color critical       #bf616a;  /* nord11 */
+@define-color charging       #a3be8c;  /* nord14 */
+@define-color disk           #d08770;  /* nord12 */
+@define-color backlight      #8fbcbb;  /* nord7 */
+@define-color temperature    #d08770;  /* nord12 */
+@define-color vlc            #ebcb8b;  /* nord13 */
+
+/* Media / MPD */
+@define-color media-bg       #a3be8c;  /* nord14 */
+@define-color media-fg       #2e3440;  /* nord0 */
+@define-color mpd-paused     #8fbcbb;  /* nord7 */
+
+/* Input modules */
+@define-color language-bg    #8fbcbb;  /* nord7 */
+@define-color language-fg    #b48ead;  /* nord15 */
+@define-color keyboard-bg    #a3be8c;  /* nord14 */
+
+/* Misc */
+@define-color wireplumber-bg #e5e9f0;  /* nord5 */
+@define-color privacy-bg     #a3be8c;  /* nord14 */
+@define-color privacy-fg     #2e3440;  /* nord0 */
