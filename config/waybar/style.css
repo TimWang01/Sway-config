@@ -317,11 +317,7 @@ label:focus {
 }
 
 #scratchpad {
-    background: @hover-bg;
-}
-
-#scratchpad.empty {
-	background-color: transparent;
+    background: transparent;
 }
 
 #privacy {
