@@ -12,6 +12,7 @@
         "sway/scratchpad"
     ],
     "modules-center": [
+        "custom/frozen",
         "sway/window"
     ],
     "modules-right": [
@@ -22,7 +23,6 @@
         "custom/dnd",
         "custom/keep-awake",
         "custom/power-profile",
-        "custom/frozen",
         "network",
         "cpu",
         "memory",
