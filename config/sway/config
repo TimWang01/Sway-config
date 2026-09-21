@@ -292,6 +292,9 @@ input * {
     repeat_delay $repeat_delay
 }
 
+# Hide the pointer after 30 s of inactivity (any movement brings it back)
+seat * hide_cursor 30000
+
 ### Autostart
 exec $scripts/night-light-toggle.sh
 exec swayosd-server
