@@ -40,6 +40,8 @@ attention — like when the system is about to run into OOM.
   (covers wine/proton games); waybar shows a pause icon before the
   window title while the focused window is frozen (fully push-based via a
   sway event bridge)
+- **Cursor auto-hide** — pointer hides after 30 s of inactivity and reappears
+  on movement
 - **Quiet by default** — no notifications, icons, or banners for routine
   events; indicators only appear when a state is worth knowing about
 - **Event-driven waybar** — audio and DND modules react to `pactl subscribe`
@@ -121,7 +123,7 @@ locked.
 | `$mod+b` | Browser (Firefox) |
 | `$mod+c` | Calculator (KCalc) |
 | `$mod+Alt+c` | Calendar (Kontact/KOrganizer, flatpak) |
-| `$mod+e` | File manager (pcmanfm-qt) |
+| `$mod+e` | File manager (thunar) |
 | `$mod+Alt+\` | KeePassXC |
 | `$mod+End` | Toggle night light (wlsunset) |
 | `$mod+Alt+a` | Audio mixer (pavucontrol) |
@@ -195,7 +197,7 @@ flatpak install flathub org.kde.kcalc org.keepassxc.KeePassXC
 
 - `org.kde.kcalc` is the calculator, `org.keepassxc.KeePassXC` the password
   manager.
-- The file manager (`pcmanfm-qt`) is a layered rpm on this setup; the calendar
+- The file manager (`thunar`) ships in the base image; the calendar
   is the flatpak `org.kde.kontact` (Kontact suite, includes KOrganizer).
 
 **Optional**: the waybar media module (`mediaplayer.py`, currently commented
