@@ -17,6 +17,7 @@
     ],
     "modules-right": [
         "tray",
+        "custom/reboot-update",
         // "custom/media",
         "custom/audio-output",
         "custom/audio-input",
@@ -222,6 +223,14 @@
         "interval": 30,
         "return-type": "json",
         "on-click": "$HOME/.config/sway/scripts/power-profile-cycle.sh",
+        "tooltip": true
+    },
+    "custom/reboot-update": {
+        // Update icon when a staged rpm-ostree deployment has Important/Critical
+        // security fixes (reboot to apply); hidden otherwise. Critical -> class "critical".
+        "exec": "$HOME/.config/waybar/reboot-update.py",
+        "interval": 600,
+        "return-type": "json",
         "tooltip": true
     },
     "custom/frozen": {
