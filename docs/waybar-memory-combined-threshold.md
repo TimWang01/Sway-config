@@ -32,9 +32,15 @@ Implemented. Threshold revised to 80% for the icon, with the critical color at
   - `80 <= pct < 90`: prints `{"text":"<icon>"}`.
   - `pct >= 90`: prints `{"text":"<icon>","class":"critical"}`.
   - Icon is U+F0C9, the same glyph as the old `format-warning`.
+  - Hover tooltip (`"tooltip"` key, emitted whenever the icon is shown), e.g.
+    `Memory 85% (RAM + swap)` / `RAM 7.0 / 8.0 GiB (88%)` /
+    `Swap 11.2 / 12.0 GiB (93%)`. With no swap configured the swap line reads
+    `Swap: none`. Percentages are floored, same as the combined value.
+  - Below 80% there is no output, so there is no icon and no tooltip to hover.
 - `config/waybar/config.jsonc`: `"memory"` replaced by `"custom/memory"` in
   `modules-right` (same position). Block uses `exec` on the script,
-  `interval: 5` (matches the old interval), and `return-type: json`.
+  `interval: 5` (matches the old interval), `return-type: json`, and
+  `tooltip: true`.
 - `config/waybar/style.css`: `#memory` -> `#custom-memory` (color group,
   padding group, background rule); new `#custom-memory.critical { color: @critical; }`.
 
@@ -42,6 +48,11 @@ Verification: fixtures (`MemTotal 1000`, `SwapTotal 1500` kB) gave the expected
 output at 79% (hidden), 80% (icon), 89% (icon), 89.88% (icon, no critical),
 and 90% (critical). `./validate-waybar.sh` passes. Waybar was reloaded with
 `SIGUSR2` and stayed up. The journal shows only pre-existing tray icon errors.
+
+Tooltip verification: a copy of the script with `/proc/meminfo` swapped for
+fixtures gave valid JSON (parsed with python) at 85% (icon + tooltip, no
+critical), 91% (critical + tooltip with three lines), 94% with no swap (`Swap:
+none`), and below-threshold fixtures (no output).
 
 ## Snapshot (2026-10-31, before the change)
 

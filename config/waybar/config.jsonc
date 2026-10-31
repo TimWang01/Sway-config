@@ -128,9 +128,11 @@
     },
     "custom/memory": {
         // Combined RAM+swap use: icon at >= 80%, critical color at >= 90%
+        // Hover tooltip (RAM / swap breakdown) while the icon is shown
         "exec": "$HOME/.config/waybar/memory-combined.sh",
         "interval": 5,
-        "return-type": "json"
+        "return-type": "json",
+        "tooltip": true
     },
     "temperature": {
         // "thermal-zone": 2,
