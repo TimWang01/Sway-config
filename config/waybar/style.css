@@ -84,7 +84,7 @@ button:hover {
 #clock,
 #battery,
 #cpu,
-#memory,
+#custom-memory,
 #disk,
 #temperature,
 #backlight,
@@ -104,7 +104,7 @@ button:hover {
     color: @fg;
 }
 
-#tray, #battery, #cpu, #memory, #disk, #temperature, #backlight,
+#tray, #battery, #cpu, #custom-memory, #disk, #temperature, #backlight,
 #network, #pulseaudio, #wireplumber, #custom-media, #custom-dnd, #custom-keep-awake, #custom-webcam,
 #mode, #scratchpad, #mpd {
     padding: 0;
@@ -180,8 +180,12 @@ label:focus {
 /*    color: #000000; */
 }
 
-#memory {
+#custom-memory {
     background-color: transparent;
+}
+
+#custom-memory.critical {
+    color: @critical;
 }
 
 #disk {

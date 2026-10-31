@@ -25,7 +25,7 @@
         "custom/power-profile",
         "network",
         "cpu",
-        "memory",
+        "custom/memory",
         "privacy",
         "custom/webcam",
         // "temperature",
@@ -125,13 +125,11 @@
         },
         "format-active": ""    /* shows only above 95% */
     },
-    "memory": {
+    "custom/memory": {
+        // Combined RAM+swap use: icon at >= 80%, critical color at >= 90%
+        "exec": "$HOME/.config/waybar/memory-combined.sh",
         "interval": 5,
-        "format": "",                    /* hidden below 90% */
-        "states": {
-            "warning": 90
-        },
-        "format-warning": ""  /* shows at >= 90% */
+        "return-type": "json"
     },
     "temperature": {
         // "thermal-zone": 2,
