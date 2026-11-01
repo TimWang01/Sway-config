@@ -83,7 +83,7 @@ button:hover {
 
 #clock,
 #battery,
-#cpu,
+#custom-cpu,
 #custom-memory,
 #disk,
 #temperature,
@@ -105,7 +105,7 @@ button:hover {
     color: @fg;
 }
 
-#tray, #battery, #cpu, #custom-memory, #disk, #temperature, #backlight,
+#tray, #battery, #custom-cpu, #custom-memory, #disk, #temperature, #backlight,
 #network, #pulseaudio, #wireplumber, #custom-media, #custom-dnd, #custom-keep-awake, #custom-webcam,
 #custom-reboot-update,
 #mode, #scratchpad, #mpd {
@@ -178,7 +178,7 @@ label:focus {
     background-color: @bg;
 }
 
-#cpu {
+#custom-cpu {
     background-color: transparent;
 /*    color: #000000; */
 }

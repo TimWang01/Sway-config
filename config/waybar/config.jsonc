@@ -25,7 +25,7 @@
         "custom/keep-awake",
         "custom/power-profile",
         "network",
-        "cpu",
+        "custom/cpu",
         "custom/memory",
         "privacy",
         "custom/webcam",
@@ -118,13 +118,12 @@
         },
         "on-click": "korganizer"
     },
-    "cpu": {
-        "interval": 3,
-        "format": "",                    /* empty — hidden below threshold */
-        "states": {
-            "active": 95
-        },
-        "format-active": ""    /* shows only above 95% */
+    "custom/cpu": {
+        // CPU icon while all-core use >= 95%, held 5 s after it drops below.
+        // Tooltip names the main consumer thread. Continuous script (no interval).
+        "exec": "$HOME/.config/waybar/cpu-consumer.py",
+        "return-type": "json",
+        "tooltip": true
     },
     "custom/memory": {
         // Combined RAM+swap use: icon at >= 80%, critical color at >= 90%
