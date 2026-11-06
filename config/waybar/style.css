@@ -126,6 +126,16 @@ button:hover {
     min-height: 16px;
 }
 
+/* Pin the audio glyphs to Font Awesome 7 explicitly.
+ * Fedora 45 replaced fontawesome-fonts (FA6) with fontawesome-7-free-fonts and
+ * also ships Jomolhari, a Tibetan font that claims U+F6A9 (volume-xmark). With
+ * only 'Century Gothic, monospace' declared, Jomolhari wins that codepoint in
+ * the fallback chain and the mute icon renders as a Tibetan stack at 16px. */
+#custom-audio-output,
+#custom-audio-input {
+    font-family: 'Font Awesome 7 Free Solid';
+}
+
 #window,
 #workspaces {
     margin: 0 4px;

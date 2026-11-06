@@ -21,7 +21,9 @@ print_state() {
     sink="$(pactl get-default-sink 2>/dev/null)"
     sink_muted="$(pactl get-sink-mute "$sink" 2>/dev/null | awk '{print $2}')"
 
-    # Output muted → volume-xmark icon (speaker with X, U+F6A9)
+    # Output muted → volume-xmark icon (speaker with X, Font Awesome 7 U+F6A9).
+    # style.css pins this module to 'Font Awesome 7 Free Solid'; without that,
+    # Jomolhari (Tibetan) claims U+F6A9 in the fontconfig fallback chain.
     if [ "$sink_muted" = "yes" ]; then
         echo ""
     else

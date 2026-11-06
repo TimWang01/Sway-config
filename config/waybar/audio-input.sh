@@ -21,7 +21,7 @@ print_state() {
     src="$(pactl get-default-source 2>/dev/null)"
     src_muted="$(pactl get-source-mute "$src" 2>/dev/null | awk '{print $2}')"
 
-    # Source unmuted → mic icon (U+F130)
+    # Source unmuted → mic icon (Font Awesome 7 U+F130; pinned in style.css)
     if [ "$src_muted" != "yes" ]; then
         echo ""
     else
