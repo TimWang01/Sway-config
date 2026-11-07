@@ -94,10 +94,8 @@ def top_consumers(prev, cur, elapsed, n=TOP_N):
     return [(d * scale, pid, proc_name(pid)) for pid, d in ranked if d > 0]
 
 
-def render(pct, holding, consumers):
+def render(pct, consumers):
     head = f"CPU {int(pct)}% (all cores)"
-    if holding:
-        head += f", below {THRESHOLD:g}%: icon held"
     if consumers is None:
         body = "Top consumers: sampling..."
     elif not consumers:
@@ -138,7 +136,7 @@ def main():
                 if prev_threads is not None:
                     consumers = top_consumers(prev_threads, threads, now - prev_t)
                 prev_threads, prev_t = threads, now
-                line = render(pct, pct < THRESHOLD, consumers)
+                line = render(pct, consumers)
             else:
                 prev_threads = prev_t = None
         except OSError as e:
