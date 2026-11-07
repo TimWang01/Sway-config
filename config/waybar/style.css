@@ -119,6 +119,8 @@ button:hover {
 #custom-power-profile,
 #custom-reboot-update,
 #custom-frozen,
+#custom-cpu,
+#custom-memory,
 #custom-audio-output,
 #custom-audio-input,
 #pulseaudio {
