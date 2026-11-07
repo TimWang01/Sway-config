@@ -6,10 +6,9 @@
 # HOLD seconds after the last sample at or above THRESHOLD, so a brief dip
 # does not flicker the bar. Hidden otherwise.
 #
-# Tooltip: overall CPU %, then the main consumer: the thread with the largest
-# CPU-time delta over the last sample period (/proc/<pid>/task/<tid>/stat),
-# shown as process / thread, % of one core, pid and tid. This script's own
-# threads are excluded.
+# Tooltip: overall CPU %, then the top 3 consumer processes by CPU-time delta
+# over the last sample period (/proc/<pid>/task/<tid>/stat, summed per process),
+# shown as name, % of one core, pid. This script's own threads are excluded.
 #
 # Continuous exec (no "interval" in the waybar config): one line per second.
 # A blank line hides the module, as mediaplayer.py does. The thread scan runs
@@ -27,6 +26,7 @@ THRESHOLD = 95.0  # percent of all cores
 PERIOD = 1.0      # seconds between samples
 HOLD = 5.0        # seconds the icon stays after CPU first drops below THRESHOLD
 HOLD_SAMPLES = round(HOLD / PERIOD)  # counted in samples, so no timing drift
+TOP_N = 3         # processes listed in the tooltip
 PROC = "/proc"
 ICON = "\uf2db"   # same glyph as the old cpu format-active
 CLK_TCK = os.sysconf("SC_CLK_TCK")
@@ -77,36 +77,35 @@ def proc_name(pid):
         return "?"
 
 
-def main_consumer(prev, cur, elapsed):
-    """(% of one core, pid, tid, thread name, process name) for the thread with
-    the largest CPU delta between two snapshots, or None."""
+def top_consumers(prev, cur, elapsed, n=TOP_N):
+    """[(% of one core, pid, process name)] for the n processes that used the
+    most CPU between two thread snapshots, largest first. A process's share is
+    the sum over its threads. A thread absent from prev started after it was
+    taken, so its whole count is in the window and counts in full."""
     if elapsed <= 0:
-        return None
-    best = None
-    for key, (ticks, name) in cur.items():
-        old = prev.get(key)
-        if old is None:
-            continue
-        delta = ticks - old[0]
-        if best is None or delta > best[0]:
-            best = (delta, key, name)
-    if best is None:
-        return None
-    delta, (pid, tid), thread = best
-    return 100.0 * delta / (elapsed * CLK_TCK), pid, tid, thread, proc_name(pid)
+        return []
+    per_pid = {}
+    for (pid, tid), (ticks, _name) in cur.items():
+        old = prev.get((pid, tid))
+        delta = ticks - (old[0] if old else 0)
+        per_pid[pid] = per_pid.get(pid, 0) + delta
+    ranked = sorted(per_pid.items(), key=lambda kv: kv[1], reverse=True)[:n]
+    scale = 100.0 / (elapsed * CLK_TCK)
+    return [(d * scale, pid, proc_name(pid)) for pid, d in ranked if d > 0]
 
 
-def render(pct, holding, consumer):
+def render(pct, holding, consumers):
     head = f"CPU {int(pct)}% (all cores)"
     if holding:
         head += f", below {THRESHOLD:g}%: icon held"
-    if consumer is None:
-        body = "Main consumer: sampling..."
+    if consumers is None:
+        body = "Top consumers: sampling..."
+    elif not consumers:
+        body = "Top consumers: none active"
     else:
-        core, pid, tid, thread, process = consumer
-        names = process if thread == process else f"{process} / {thread}"
-        body = (f"Main consumer: {html.escape(names)}\n"
-                f"{min(core, 100.0):.0f}% of one core (pid {pid}, tid {tid})")
+        rows = [f"{i}. {html.escape(name)} {core:.0f}% (pid {pid})"
+                for i, (core, pid, name) in enumerate(consumers, 1)]
+        body = "Top consumers (% of one core):\n" + "\n".join(rows)
     return json.dumps({"text": ICON, "tooltip": f"{head}\n{body}"},
                       ensure_ascii=False)
 
@@ -135,11 +134,11 @@ def main():
             if visible and pct is not None:
                 threads = thread_ticks()
                 now = time.monotonic()
-                consumer = None
+                consumers = None
                 if prev_threads is not None:
-                    consumer = main_consumer(prev_threads, threads, now - prev_t)
+                    consumers = top_consumers(prev_threads, threads, now - prev_t)
                 prev_threads, prev_t = threads, now
-                line = render(pct, pct < THRESHOLD, consumer)
+                line = render(pct, pct < THRESHOLD, consumers)
             else:
                 prev_threads = prev_t = None
         except OSError as e:
