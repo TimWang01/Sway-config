@@ -42,7 +42,7 @@ Implemented. The built-in `cpu` module is replaced by `custom/cpu`, backed by
   counts in full, which catches short-lived processes. The first visible sample
   reads "sampling...".
 - **Tooltip** (`tooltip: true`):
-  `CPU 97% (all cores)` (with `, below 95%: icon held` during the hold), then
+  `CPU 97% (all cores)`, then
   `Top consumers (% of one core):` and one row per process,
   `<n>. <name> <pct>% (pid P)`. Rows are ordered by CPU time. If nothing used
   CPU in the window the line reads `Top consumers: none active`. Names are
@@ -71,7 +71,7 @@ the padding group, and the transparent-background rule.
   rows with names, percentages and pids. The machine also had real heavy
   consumers (Unity, VRChat.exe at 130–400% of one core), so they ranked above
   the test workers, as intended. Hold samples after the load ended still listed
-  the top 3 and read `CPU 18%`/`19%` with `icon held`.
+  the top 3 and read `CPU 18%`/`19%`.
 - Logic test with synthetic snapshots: per-process summing across threads, a new
   thread counted in full, a zero-delta process dropped, the 3-row cap, and empty
   or "sampling" states all rendered as intended. Output parsed with `json`.
